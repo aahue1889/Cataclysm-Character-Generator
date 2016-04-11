@@ -1,0 +1,108 @@
+import java.awt.Container;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.StringSelection;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.TransferHandler;
+
+
+//I might rename this to List listerner (but not now - as I do not know the functionality of this class)
+
+@SuppressWarnings("serial")
+public class CharacterBuilderController extends TransferHandler implements ListSelectionListener {
+
+	CharacterBuilderModel model;
+	CharBuilderFrame view;
+	JList source;
+	
+	public CharacterBuilderController(CharacterBuilderModel model, CharBuilderFrame view){
+		this.model = model;
+		this.view = view;
+		
+		view.getGeneralList().setTransferHandler(new ImportTransferHandler( view.getGeneralList(), model.getGeneralList()) );
+		view.getFemaleList().setTransferHandler( new ImportTransferHandler( view.getFemaleList(), model.getFemaleList()) );
+		view.getMaleList().setTransferHandler( new ImportTransferHandler(view.getMaleList(), model.getMaleList() ));
+		
+		view.getItemList().setTransferHandler( new ExportTransferHandler( view.getItemList() ) );
+	}
+	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		//Object tempList = ((JList)e.getSource()).getSelectedValue();
+		
+		if( ((JList)e.getSource()).getSelectedValue() instanceof Item){
+			
+			Item retrievedItem = (Item)((JList) e.getSource()).getSelectedValue();
+			view.getTextArea().setText(retrievedItem.getDescription());
+			
+		}
+		else
+			System.out.println("I don't know what this is");
+	}
+		
+    private class ExportTransferHandler extends TransferHandler {
+    	
+    	private JList<Item> source;
+    	
+    	public ExportTransferHandler( JList<Item> exportList ){
+    		source = exportList;
+    	}
+    	
+        public int getSourceActions(JComponent c){ //Triggered Every Click on a  Export item 
+            return TransferHandler.COPY_OR_MOVE;
+        }
+     
+        public Transferable createTransferable(JComponent c) { // Triggered by dragging the mouse on Source
+        	return new StringSelection( source.getSelectedValue().getName() );
+        }
+    }
+ 
+    private class ImportTransferHandler extends TransferHandler {
+
+    	private JList<String> target;
+    	private DefaultListModel<String> modelTarget;
+    	
+    	public ImportTransferHandler( JList<String> importList, DefaultListModel<String> importModel){
+    		target = importList;
+    		modelTarget = importModel;
+    		
+    	}
+    	
+        public boolean canImport(TransferHandler.TransferSupport supp) { // When dragged over target list
+          // if (!supp.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+           //     return false;
+           // }
+            return true;
+        }
+     
+        /**
+         * Supp is the item that is currently stored from source (the origin of the drag)
+         * TODO Should I just make the right Strings?
+         */
+        public boolean importData(TransferHandler.TransferSupport supp) { // Mouse released on Target
+            // Fetch the Transferable and its data
+            Transferable t = supp.getTransferable();
+            String data = "";
+            try {
+                data = (String) t.getTransferData(DataFlavor.stringFlavor); //convert the item into what you want (CASTING NECESSARY)
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                return false;
+            }
+
+            // Fetch the drop location
+            JList.DropLocation loc = target.getDropLocation();
+            int row = loc.getIndex();
+            modelTarget.add(row, data);
+            target.validate();
+            return true;
+        }
+    }
+
+}
