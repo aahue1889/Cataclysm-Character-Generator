@@ -31,6 +31,10 @@ public class CharacterBuilder {
 		CharacterBuilderController controller = new CharacterBuilderController(model, frame);
 		
 		frame.getItemList().addListSelectionListener(controller);
+		frame.getFemaleList().addListSelectionListener(controller);
+		frame.getMaleList().addListSelectionListener(controller);
+		frame.getGeneralList().addListSelectionListener(controller);
+
 		
 		frame.pack();
 		frame.setVisible(true);

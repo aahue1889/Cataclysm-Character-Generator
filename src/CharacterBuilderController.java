@@ -20,6 +20,15 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 	CharBuilderFrame view;
 	JList source;
 	
+	/**
+	 * This will be used to create the item on the right list
+	 */
+	String tempDescription;
+	String tempName;
+	String tempID;
+	
+	private String description;
+	
 	public CharacterBuilderController(CharacterBuilderModel model, CharBuilderFrame view){
 		this.model = model;
 		this.view = view;
@@ -39,6 +48,10 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 		if( ((JList)e.getSource()).getSelectedValue() instanceof Item){
 			
 			Item retrievedItem = (Item)((JList) e.getSource()).getSelectedValue();
+			tempName = retrievedItem.getName();
+			tempID = retrievedItem.getId();
+			tempDescription = retrievedItem.getDescription();
+			
 			view.getTextArea().setText(retrievedItem.getDescription());
 			
 		}
@@ -49,6 +62,7 @@ public class CharacterBuilderController extends TransferHandler implements ListS
     private class ExportTransferHandler extends TransferHandler {
     	
     	private JList<Item> source;
+    	
     	
     	public ExportTransferHandler( JList<Item> exportList ){
     		source = exportList;
@@ -65,10 +79,10 @@ public class CharacterBuilderController extends TransferHandler implements ListS
  
     private class ImportTransferHandler extends TransferHandler {
 
-    	private JList<String> target;
-    	private DefaultListModel<String> modelTarget;
+    	private JList<Item> target;
+    	private DefaultListModel<Item> modelTarget;
     	
-    	public ImportTransferHandler( JList<String> importList, DefaultListModel<String> importModel){
+    	public ImportTransferHandler( JList<Item> importList, DefaultListModel<Item> importModel){
     		target = importList;
     		modelTarget = importModel;
     		
@@ -99,7 +113,7 @@ public class CharacterBuilderController extends TransferHandler implements ListS
             // Fetch the drop location
             JList.DropLocation loc = target.getDropLocation();
             int row = loc.getIndex();
-            modelTarget.add(row, data);
+            modelTarget.add(row, new Item(tempName, tempID, tempDescription) );
             target.validate();
             return true;
         }

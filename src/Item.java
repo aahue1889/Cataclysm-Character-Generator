@@ -142,6 +142,19 @@ public class Item {
 	 * The Constructor is blank because it is going to be instantiated with its setters
 	 */
 	public Item(){}
+	
+	
+	/**
+	 * This constructor is reserved for moving items over the left drop list
+	 * String name - a user friendly read name it is displayed on the lists
+	 * String id - This is a major string needed for building json files
+	 * String Description - Will contain information regaurding the item (incase they want ammo)
+	 */
+	public Item( String name, String id, String Description){
+		this.name = name;
+		this.id = id;
+		this.description = Description;
+	}
 
 	
 	/**

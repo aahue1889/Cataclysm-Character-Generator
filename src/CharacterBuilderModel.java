@@ -7,17 +7,17 @@ import javax.swing.DefaultListModel;
 public class CharacterBuilderModel {
 
 	private ArrayList<Item> itemList;
-	private DefaultListModel<String> femaleList, maleList, generalList;
+	DefaultListModel<Item> generalList, femaleList, maleList;
 	
 	public CharacterBuilderModel(){
-		femaleList = new DefaultListModel<String>();
-		femaleList.addElement(new String());
+		femaleList = new DefaultListModel<Item>();
+		femaleList.addElement(new Item());
 		
-		maleList = new DefaultListModel<String>();
-		maleList.addElement(new String());
+		maleList = new DefaultListModel<Item>();
+		maleList.addElement(new Item());
 		
-		generalList = new DefaultListModel<String>();
-		generalList.addElement(new String());
+		generalList = new DefaultListModel<Item>();
+		generalList.addElement(new Item());
 
 	}
 
@@ -98,27 +98,27 @@ public class CharacterBuilderModel {
 		this.itemList = itemList;
 	}
 
-	public DefaultListModel<String> getMaleList() {
+	public DefaultListModel<Item> getMaleList() {
 		return maleList;
 	}
 
-	public void setMaleList(DefaultListModel<String> maleListModel) {
+	public void setMaleList(DefaultListModel<Item> maleListModel) {
 		this.maleList = maleListModel;
 	}
 
-	public DefaultListModel<String> getFemaleList() {
+	public DefaultListModel<Item> getFemaleList() {
 		return femaleList;
 	}
 
-	public void setFemaleList(DefaultListModel<String> femaleList) {
+	public void setFemaleList(DefaultListModel<Item> femaleList) {
 		this.femaleList = femaleList;
 	}
 
-	public DefaultListModel<String> getGeneralList() {
+	public DefaultListModel<Item> getGeneralList() {
 		return generalList;
 	}
 
-	public void setGeneralList(DefaultListModel<String> generalList) {
+	public void setGeneralList(DefaultListModel<Item> generalList) {
 		this.generalList = generalList;
 	}
 }

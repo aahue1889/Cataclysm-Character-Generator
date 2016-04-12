@@ -46,8 +46,10 @@ public class CharBuilderFrame extends JFrame {
 	
 	private JPanel panel_3,requestedItemsPanel, descriptionPanel, itemPanel;
 	private JPanel ItemListPanel;
-	private JList<String> generalList, maleList, femaleList;
-	private JList<Item> itemList;
+	//private JList<String> ;
+
+	private JList<Item> femaleList;
+	private JList<Item> itemList, generalList, maleList;
 	private CharacterBuilderModel model;
 	private JLabel lblFemaleList;
 	private JLabel lblMaleList;
@@ -79,9 +81,9 @@ public class CharBuilderFrame extends JFrame {
 		
 		lblFemaleList = new JLabel("female list");
 		requestedItemsPanel.add(lblFemaleList);
-		femaleList = new JList<String>(model.getFemaleList());
+		femaleList = new JList<Item>(model.getFemaleList());
 		femaleList.setDragEnabled(true);
-		femaleList.setModel((ListModel<String>) model.getFemaleList());
+		femaleList.setModel((ListModel<Item>) model.getFemaleList());
 		//femaleList.setTransferHandler(new ImportTransferHandler(femaleList, model.getFemaleList()));
 		femaleList.setDropMode(DropMode.INSERT);
 		JScrollPane femalescrollPane = new JScrollPane(femaleList);
@@ -91,7 +93,7 @@ public class CharBuilderFrame extends JFrame {
 		
 		lblMaleList = new JLabel("male list");
 		requestedItemsPanel.add(lblMaleList);
-		maleList = new JList<String>(model.getMaleList());
+		maleList = new JList<Item>(model.getMaleList());
 		maleList.setDragEnabled(true);
 		//maleList.setTransferHandler(new ListTransferHandler());
 		//maleList.setTransferHandler(new ImportTransferHandler(maleList, model.getMaleList()));
@@ -104,7 +106,7 @@ public class CharBuilderFrame extends JFrame {
 
 		JLabel lblGeneralList = new JLabel("general list");
 		requestedItemsPanel.add(lblGeneralList);
-		generalList = new JList<String>(model.getGeneralList());
+		generalList = new JList<Item>(model.getGeneralList());
 		generalList.setDragEnabled(true);
 		//generalList.setTransferHandler(new ImportTransferHandler(generalList, model.getGeneralList()));
 		generalList.setDropMode(DropMode.INSERT);
@@ -136,28 +138,28 @@ public class CharBuilderFrame extends JFrame {
 
 	}
 	
-	public JList<String> getMaleList() {
+	public JList<Item> getMaleList() {
 		return maleList;
 	}
 
-	public void setMaleList(JList<String> maleList) {
+	public void setMaleList(JList<Item> maleList) {
 		this.maleList = maleList;
 	}
 
-	public JList<String> getFemaleList() {
+	public JList<Item> getFemaleList() {
 		return femaleList;
 	}
 
-	public void setFemaleList(JList<String> femaleList) {
+	public void setFemaleList(JList<Item> femaleList) {
 		this.femaleList = femaleList;
 	}
 
-	public JList<String> getGeneralList() {
+	public JList<Item> getGeneralList() {
 		return generalList;
 	}
 
 
-	public void setGeneralList(JList<String> generalList) {
+	public void setGeneralList(JList<Item> generalList) {
 		this.generalList = generalList;
 	}
 	
