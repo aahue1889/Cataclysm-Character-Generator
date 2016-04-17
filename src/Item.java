@@ -276,12 +276,12 @@ public class Item {
 				 *one word definition of a tool: (HOTPLATE, HAMMER .. etc)*/
 				if(line.contains("{")){
 					use_action_attr = new Use_Action_Table();
-					use_action_attr.buildTable(bufferedReader);
+					use_action_attr.buildTable(bufferedReader); // Will search for the '}' while building  the use_action description
 					continue;
 				}
 				else{					
 					line = line.substring(line.indexOf(":") + 1);
-					use_action_attr = new Use_Action_Table(line);
+					use_action_attr = new Use_Action_Table(line); 
 					continue;
 				}
 			}

@@ -77,7 +77,7 @@ public class CharBuilderFrame extends JFrame {
 		
 		//requested Items Panel (the Right Panel)
 		requestedItemsPanel = new JPanel();
-		requestedItemsPanel.setLayout(new GridLayout(6, 0, 0, 0));
+		requestedItemsPanel.setLayout(new GridLayout(7, 0, 0, 0));
 		
 		lblFemaleList = new JLabel("female list");
 		requestedItemsPanel.add(lblFemaleList);
@@ -88,7 +88,7 @@ public class CharBuilderFrame extends JFrame {
 		femaleList.setDropMode(DropMode.INSERT);
 		JScrollPane femalescrollPane = new JScrollPane(femaleList);
 		femalescrollPane.setViewportView(femaleList);
-		femalescrollPane.setPreferredSize(new Dimension(400, 100));
+		femalescrollPane.setPreferredSize(new Dimension(400, 40));
 		requestedItemsPanel.add(femalescrollPane);
 		
 		lblMaleList = new JLabel("male list");
@@ -100,7 +100,7 @@ public class CharBuilderFrame extends JFrame {
 		maleList.setDropMode(DropMode.INSERT);
 		JScrollPane malescrollPane = new JScrollPane(maleList);
 		malescrollPane.setViewportView(maleList);
-		malescrollPane.setPreferredSize(new Dimension(400, 100));
+		malescrollPane.setPreferredSize(new Dimension(400, 40));
 		requestedItemsPanel.add(malescrollPane);
 		
 
@@ -112,8 +112,10 @@ public class CharBuilderFrame extends JFrame {
 		generalList.setDropMode(DropMode.INSERT);
 		JScrollPane generalscrollPane = new JScrollPane(generalList);
 		generalscrollPane.setViewportView(generalList);
-		generalscrollPane.setPreferredSize(new Dimension(400, 100));
+		generalscrollPane.setPreferredSize(new Dimension(400, 40));
 		requestedItemsPanel.add(generalscrollPane);
+		
+		requestedItemsPanel.add(new JButton("Skills and Traits"));
 
 
 		getContentPane().add(requestedItemsPanel, BorderLayout.EAST);

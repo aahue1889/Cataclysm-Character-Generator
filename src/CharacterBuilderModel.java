@@ -9,7 +9,7 @@ public class CharacterBuilderModel {
 	private ArrayList<Item> itemList;
 	DefaultListModel<Item> generalList, femaleList, maleList;
 	
-	public CharacterBuilderModel(){
+	public CharacterBuilderModel(  ){
 		femaleList = new DefaultListModel<Item>();
 		femaleList.addElement(new Item());
 		
@@ -18,13 +18,14 @@ public class CharacterBuilderModel {
 		
 		generalList = new DefaultListModel<Item>();
 		generalList.addElement(new Item());
-
+		
+		itemList = new ArrayList<Item>();
 	}
 
 	public void openJsonFile( String fileName, ArrayList<Item> genericList){
 
 		String line = "";
-		itemList = genericList; //TODO This should be in the constructor
+		//itemList = genericList; //TODO This should be in the constructor
 								// but i'm brainstorming on how I can divide the list size to other areas
 
         try {
@@ -45,7 +46,7 @@ public class CharacterBuilderModel {
                 	
 	                	Item newitem = new Item();
 	                	isCorrect = newitem.buildItem(bufferedReader);
-	                	genericList.add(newitem);
+	                	itemList.add(newitem);
 	                	
 	                	if(isCorrect == 1) break;
 	                	else continue;

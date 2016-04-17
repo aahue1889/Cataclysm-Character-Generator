@@ -28,6 +28,8 @@ public class CharacterBuilder {
 		//openJsonFile("../CataCharGenerator/src/json/items/software.json", genericList);
 
 		CharBuilderFrame frame = new CharBuilderFrame(model);
+		SkillsAndTraitsFrame skillTFrame = new SkillsAndTraitsFrame();
+		
 		CharacterBuilderController controller = new CharacterBuilderController(model, frame);
 		
 		frame.getItemList().addListSelectionListener(controller);
