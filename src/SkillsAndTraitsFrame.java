@@ -22,33 +22,6 @@ public class SkillsAndTraitsFrame extends JFrame{
 		super("Skills and Traits");
 		
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JLabel larchery = new JLabel("Archery");
-		JLabel lbartering  = new JLabel("Bartering");
-		JLabel lbashing_weapons  = new JLabel("Bashing Weapons");
-		JLabel lcomputers = new JLabel("Computers");
-		JLabel lconstruction  = new JLabel("Construction");
-		JLabel lcooking  = new JLabel("Cooking");
-		JLabel lcutting_weapons  = new JLabel("Cutting Weapons");
-		JLabel ldodging  = new JLabel("Dodging");
-		JLabel ldriving = new JLabel("Driving");
-		JLabel lectronics  = new JLabel("Electronics");
-		JLabel lfabrication  = new JLabel("Fabrication");
-		JLabel lfirst_aid  = new JLabel("First Aid");
-		JLabel lhandguns = new JLabel("Handguns");
-		JLabel llaunchers  = new JLabel("Launchers");
-		JLabel lmechanics  = new JLabel("Mechanics");
-		JLabel lmelee  = new JLabel("Melee");
-		JLabel lpiercing = new JLabel("Piercing Weapons");
-		JLabel lrifles  = new JLabel("Rifles");
-		JLabel lspeaking  = new JLabel("Speaking");
-		JLabel lsubmachguns  = new JLabel("Sub Machine Guns");
-		JLabel lsurvival = new JLabel("Survival");
-		JLabel lswimming  = new JLabel("Swimming");
-		JLabel lTailoring  = new JLabel("Tailoring");
-		JLabel lthrowing = new JLabel("Throwing");
-		JLabel ltrapping  = new JLabel("Trapping");
-		JLabel lunarmedcomb  = new JLabel("Unarmed Combat");
 	    
 	    
 	    SpinnerModel model1 = new SpinnerNumberModel();
@@ -66,7 +39,17 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    SpinnerModel model13 = new SpinnerNumberModel();
 	    SpinnerModel model14 = new SpinnerNumberModel();
 	    SpinnerModel model15 = new SpinnerNumberModel();
-
+	    SpinnerModel model16 = new SpinnerNumberModel();
+	    SpinnerModel model17 = new SpinnerNumberModel();
+	    SpinnerModel model18 = new SpinnerNumberModel();
+	    SpinnerModel model19 = new SpinnerNumberModel();
+	    SpinnerModel model20 = new SpinnerNumberModel();
+	    SpinnerModel model21 = new SpinnerNumberModel();
+	    SpinnerModel model22 = new SpinnerNumberModel();
+	    SpinnerModel model23 = new SpinnerNumberModel();
+	    SpinnerModel model24 = new SpinnerNumberModel();
+	    SpinnerModel model25 = new SpinnerNumberModel();
+	    SpinnerModel model26 = new SpinnerNumberModel();
 
 	    JSpinner spinarchery = new JSpinner(model1);
 	    JSpinner spinbartering  = new JSpinner(model2);
@@ -83,50 +66,163 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    JSpinner spinhandguns = new JSpinner(model13);
 	    JSpinner spinlaunchers  = new JSpinner(model14);
 	    JSpinner spinmechanics  = new JSpinner(model15);
-	    JSpinner spinmelee  = new JSpinner(model1);
-	    JSpinner spinpiercing = new JSpinner(model1);
-	    JSpinner  spinrifles  = new JSpinner(model1);
-	    JSpinner  spinspeaking  = new JSpinner(model1);;
-	    JSpinner  spinsubmachguns  = new JSpinner(model1);
-	    JSpinner  spinsurvival = new JSpinner(model1);
-	    JSpinner  spinswimming  = new JSpinner(model1);
-	    JSpinner  spinTailoring  = new JSpinner(model1);
-	    JSpinner  spinthrowing = new JSpinner(model1);
-	    JSpinner  spintrapping  = new JSpinner(model1);
-	    JSpinner  spinunarmedcomb  = new JSpinner(model1);
+	    JSpinner spinmelee  = new JSpinner(model16);
+	    JSpinner spinpiercing = new JSpinner(model17);
+	    JSpinner  spinrifles  = new JSpinner(model18);
+	    JSpinner  spinspeaking  = new JSpinner(model19);;
+	    JSpinner  spinsubmachguns  = new JSpinner(model20);
+	    JSpinner  spinsurvival = new JSpinner(model21);
+	    JSpinner  spinswimming  = new JSpinner(model22);
+	    JSpinner  spinTailoring  = new JSpinner(model23);
+	    JSpinner  spinthrowing = new JSpinner(model24);
+	    JSpinner  spintrapping  = new JSpinner(model25);
+	    JSpinner  spinunarmedcomb  = new JSpinner(model26);
 
 	    
-	    JPanel panel1 = new JPanel(new BorderLayout());
-	    JPanel labelList = new JPanel();
-	    JPanel spinnerList = new JPanel();
-	    JPanel otherList = new JPanel();
-	    JPanel finalList = new JPanel();
-	    //spinnerList.setLayout(new BoxLayout(spinnerList, BoxLayout.Y_AXIS));
-        labelList.setLayout(new BoxLayout(labelList, BoxLayout.Y_AXIS));
+	    JPanel mainPanel = new JPanel(new BorderLayout());
+	    JPanel skillListPanel = new JPanel();
 
-        spinnerList.add(larchery);
-        spinnerList.add(spinarchery);
-        labelList.add(spinnerList);
-
-        otherList.add(lswimming);
-        otherList.add(spinswimming);
-        labelList.add(otherList);
-
-        finalList.add(lspeaking);
-        finalList.add(spinspeaking);
-        labelList.add(finalList);
-
-
- //       panel1.add(labelList, BorderLayout.WEST);
-//		labelList.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-	    panel1.add(labelList, BorderLayout.CENTER);
 	    
-	    add(panel1, BorderLayout.SOUTH);
+	    skillListPanel.setLayout( new GridLayout(10, 0, 0, 0) );
 
+	    JPanel archerPanel = new JPanel();
+        archerPanel.add(new JLabel("Archery"));
+        archerPanel.add(spinarchery);
+        skillListPanel.add(archerPanel);
+
+	    JPanel barterPanel = new JPanel();
+        barterPanel.add(new JLabel("Bartering"));
+        barterPanel.add(spinbartering);
+        skillListPanel.add(barterPanel);
+
+	    JPanel bashPanel = new JPanel();
+        bashPanel.add(new JLabel("Bashing Weapons"));
+        bashPanel.add(spinbashing_weapons);
+        skillListPanel.add(bashPanel);
+        
+        JPanel computerPanel = new JPanel();
+        computerPanel.add(new JLabel("Computers"));
+        computerPanel.add(spincomputers);
+        skillListPanel.add(computerPanel);
+        
+        JPanel constructionPanel = new JPanel();
+        constructionPanel.add(new JLabel("Construction"));
+        constructionPanel.add(spinlconstruction);
+        skillListPanel.add(constructionPanel);
+        
+        JPanel cookingPanel = new JPanel();
+        cookingPanel.add(new JLabel("Cooking"));
+        cookingPanel.add(spincooking);
+        skillListPanel.add(cookingPanel);
+
+        JPanel cuttingPanel = new JPanel();
+        cuttingPanel.add(new JLabel("Cutting Weapons"));
+        cuttingPanel.add(spincutting_weapons);
+        skillListPanel.add(cuttingPanel);
+        
+        JPanel dodgePanel = new JPanel();
+        dodgePanel.add(new JLabel("Dodging"));
+        dodgePanel.add(spindodging);
+        skillListPanel.add(dodgePanel );
+
+        JPanel drivingPanel = new JPanel();
+        drivingPanel.add(new JLabel("Driving"));
+        drivingPanel.add(spindriving);
+        skillListPanel.add(drivingPanel);
+        
+        JPanel electronicsPanel = new JPanel();
+        electronicsPanel.add(new JLabel("Electronics"));
+        electronicsPanel.add(spinectronics);
+        skillListPanel.add(electronicsPanel);
+
+        JPanel fabricationPanel = new JPanel();
+        fabricationPanel .add(new JLabel("Fabrication"));
+        fabricationPanel .add(spinfabrication);
+        skillListPanel.add(fabricationPanel );
+
+        
+        JPanel firstAidPanel = new JPanel();
+        firstAidPanel.add(new JLabel("First-Aid"));
+        firstAidPanel.add(spinfirst_aid);
+        skillListPanel.add(firstAidPanel);
+
+        JPanel handgunPanel = new JPanel();
+        handgunPanel.add(new JLabel("Handguns"));
+        handgunPanel.add(spinhandguns);
+        skillListPanel.add(handgunPanel);
+
+        JPanel launcherPanel = new JPanel();
+        launcherPanel.add(new JLabel("Launchers"));
+        launcherPanel.add(spinlaunchers);
+        skillListPanel.add(launcherPanel);
+
+        JPanel mechanicsPanel = new JPanel();
+        mechanicsPanel.add(new JLabel("Mechanics"));
+        mechanicsPanel.add(spinmechanics);
+        skillListPanel.add(mechanicsPanel);
+
+        JPanel meleePanel = new JPanel();
+        meleePanel.add(new JLabel("Melee"));
+        meleePanel.add(spinmelee);
+        skillListPanel.add(meleePanel);
+
+        JPanel piercingPanel = new JPanel();
+        piercingPanel.add(new JLabel("Piercing Weapons"));
+        piercingPanel.add(spinpiercing);
+        skillListPanel.add(piercingPanel);
+
+        JPanel riflesPanel = new JPanel();
+        riflesPanel.add(new JLabel("Rifles"));
+        riflesPanel.add(spinrifles);
+        skillListPanel.add(riflesPanel);
+
+        JPanel speakingPanel = new JPanel();
+        speakingPanel.add(new JLabel("Speaking"));
+        speakingPanel.add(spinspeaking);
+        skillListPanel.add(speakingPanel);
+
+        JPanel submachinePanel = new JPanel();
+        submachinePanel.add(new JLabel("Sub Machine Guns"));
+        submachinePanel.add(spinsubmachguns);
+        skillListPanel.add(submachinePanel);
+
+        JPanel survivalPanel = new JPanel();
+        survivalPanel.add(new JLabel("Survival"));
+        survivalPanel.add(spinsurvival);
+        skillListPanel.add(survivalPanel);
+
+        JPanel swimmingPanel = new JPanel();
+        swimmingPanel.add(new JLabel("Swimming"));
+        swimmingPanel.add(spinswimming);
+        skillListPanel.add(swimmingPanel);
+
+        JPanel tailoringPanel = new JPanel();
+        tailoringPanel.add(new JLabel("Tailoring"));
+        tailoringPanel.add(spinTailoring);
+        skillListPanel.add(tailoringPanel);
+
+        JPanel throwingPanel = new JPanel();
+        throwingPanel.add(new JLabel("Throwing"));
+        throwingPanel.add(spinthrowing);
+        skillListPanel.add(throwingPanel);
+
+        JPanel trappingPanel = new JPanel();
+        trappingPanel.add(new JLabel("Trapping"));
+        trappingPanel.add(spintrapping);
+        skillListPanel.add(trappingPanel);
+
+        JPanel unarmedPanel = new JPanel();
+        unarmedPanel.add(new JLabel("Unarmed Combat"));
+        unarmedPanel.add(spinunarmedcomb);
+        skillListPanel.add(unarmedPanel);
+ 
+
+	    mainPanel.add(skillListPanel, BorderLayout.CENTER);
+	    
+	    add(mainPanel, BorderLayout.SOUTH);
+	    pack();
 	 
 
-	    setSize(300, 300);
 	    setVisible(true);
 
 	}
