@@ -4,8 +4,12 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
@@ -51,6 +55,8 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    SpinnerModel model25 = new SpinnerNumberModel();
 	    SpinnerModel model26 = new SpinnerNumberModel();
 
+	    SpinnerModel model27 = new SpinnerNumberModel();
+
 	    JSpinner spinarchery = new JSpinner(model1);
 	    JSpinner spinbartering  = new JSpinner(model2);
 	    JSpinner spinbashing_weapons  = new JSpinner(model3);;
@@ -77,6 +83,8 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    JSpinner  spinthrowing = new JSpinner(model24);
 	    JSpinner  spintrapping  = new JSpinner(model25);
 	    JSpinner  spinunarmedcomb  = new JSpinner(model26);
+	    
+	    JSpinner classCostSpinner = new JSpinner(model27);
 
 	    
 	    JPanel mainPanel = new JPanel(new BorderLayout());
@@ -215,8 +223,40 @@ public class SkillsAndTraitsFrame extends JFrame{
         unarmedPanel.add(new JLabel("Unarmed Combat"));
         unarmedPanel.add(spinunarmedcomb);
         skillListPanel.add(unarmedPanel);
- 
+        
+        
+        //--------
+        
+        JPanel northPanel = new JPanel();
+        northPanel.add(new JLabel("Name of Class: "));
+        northPanel.add(new JTextField(10));
+        northPanel.add(new JLabel("| Cost of Class"));
+        northPanel.add(classCostSpinner);
 
+	    mainPanel.add(northPanel, BorderLayout.NORTH);
+ 
+	    //----- TraitsPanel
+	    JPanel traitsPanel = new JPanel();
+	    traitsPanel.setLayout(new BoxLayout(traitsPanel, BoxLayout.Y_AXIS));
+	    
+	    traitsPanel.add(new JLabel("Traits"));
+	    //JList<Trait> traitsList = new JList<Trait>();
+	    //traitsPanel.add(traitsList);
+
+	    traitsPanel.add(new JLabel("\nChosen Traits: "));
+	    //JList<Trait> chosenTraitsList = new JList<Trait>();
+	    //traitsPanel.add(chosenTraitsList);
+	    
+		JTextArea descriptionTextBox = new JTextArea(20,30);
+		descriptionTextBox.setLineWrap(true);		
+		JScrollPane textScroller = new JScrollPane(descriptionTextBox);
+		traitsPanel.add(textScroller);
+	    
+		mainPanel.add(traitsPanel, BorderLayout.EAST);
+		
+		//------
+
+	    //model.getGeneralList()
 	    mainPanel.add(skillListPanel, BorderLayout.CENTER);
 	    
 	    add(mainPanel, BorderLayout.SOUTH);

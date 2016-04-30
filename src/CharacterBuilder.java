@@ -7,10 +7,13 @@ public class CharacterBuilder {
 	public static void main( String args[] ){
 		
 		CharacterBuilderModel model = new CharacterBuilderModel();
+		SkillsAndTraitsModel traitsmodel = new SkillsAndTraitsModel();
 		ArrayList<Item> genericList = new ArrayList<Item>();
+		ArrayList<Trait> traitList = new ArrayList<Trait>();
 		
 		model.openJsonFile("../CataCharGenerator/src/json/items/tool_armor.json", genericList);
-
+		traitsmodel.openJsonFile("../CataCharGenerator/src/json/mutations.json", traitList);
+		
 		//openJsonFile("../CataCharGenerator/src/json/items/generic.json", genericList);
 		//openJsonFile("../CataCharGenerator/src/json/items/tools.json", genericList);
 		//openJsonFile("../CataCharGenerator/src/json/items/archery.json", genericList);
@@ -41,9 +44,13 @@ public class CharacterBuilder {
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		for(int x = 0; x < genericList.size(); x++){
+		/*for(int x = 0; x < genericList.size(); x++){
 			
 			System.out.println("lo:"+genericList.get(x).getId()+"COUNT: "+ x);
+		}*/
+		for(int x = 0; x < traitList.size(); x++){
+			
+			System.out.println("lo:"+traitList.get(x).getGameID()+"COUNT: "+ x);
 		}
 	}
 }

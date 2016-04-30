@@ -1,4 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 
 public class SkillsAndTraitsModel{
 
@@ -31,6 +37,9 @@ public class SkillsAndTraitsModel{
 	private int throwing = 0;
 	private int trapping = 0;
 	private int unarmed_combat = 0;
+	
+	DefaultListModel<Trait> traitList;
+	DefaultListModel<Trait> exportedTraitList;
 	
 /*	private String[] goodTraits = { "Accomplished Sleeper",
 			"Addiction Resistant",
@@ -149,6 +158,57 @@ public class SkillsAndTraitsModel{
 		// Then it will be added to the list
 		// currently we have no way of discerning good traits or bad traits
 		// I need to create Trait object which is just id (Game name) and Description to help user make a decision
+	}
+	
+	public void openJsonFile( String fileName, ArrayList<Trait> traitList){
+		String line = "";
+		//itemList = genericList; //TODO This should be in the constructor
+								// but i'm brainstorming on how I can divide the list size to other areas
+
+        try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader = new FileReader(fileName);
+
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            int character; // TODO put this somewhere more appropriate
+            int isCorrect;
+            
+            while( (character = bufferedReader.read()) != -1) {
+                //System.out.println(line);
+            	char ch = (char)character;
+            	
+                if( ch == '{' ){
+                	while(true){
+                	
+	                	Trait newTrait = new Trait();
+	                	isCorrect = newTrait.buildItem(bufferedReader);
+	                	if(newTrait.isStartingTrait())
+	                		traitList.add(newTrait);
+	                	if(isCorrect == 0) 
+	                		continue;
+	                		
+	                	break;
+                	}
+                }
+                                
+            }// End of while   
+
+            // Always close files.
+            bufferedReader.close();         
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "Unable to open file '" + 
+                fileName + "'");                
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error reading file '" 
+                + fileName + "'");                  
+            // Or we could just do this: 
+            // ex.printStackTrace();
+        }
 	}
 	
 	public int getArchery() {

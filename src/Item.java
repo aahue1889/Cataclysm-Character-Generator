@@ -145,7 +145,7 @@ public class Item {
 	
 	
 	/**
-	 * This constructor is reserved for moving items over the left drop list
+	 * This constructor is reserved for moving items over to the left drop list
 	 * String name - a user friendly read name it is displayed on the lists
 	 * String id - This is a major string needed for building json files
 	 * String Description - Will contain information regaurding the item (incase they want ammo)
@@ -159,7 +159,6 @@ public class Item {
 	
 	/**
 	 * Fills out an GENERIC file based on a json file
-	 * @param genericList - the list the Item will be added to 
 	 * @param bufferedReader - the file reader
 	 * @throws IOException - Handles I/O problems
 	 * @returns how the body of the statement was terminated
