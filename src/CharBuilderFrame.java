@@ -50,7 +50,6 @@ public class CharBuilderFrame extends JFrame {
 
 	private JList<Item> femaleList;
 	private JList<Item> itemList, generalList, maleList;
-	private CharacterBuilderModel model;
 	private JLabel lblFemaleList;
 	private JLabel lblMaleList;
 	private JTextArea textArea;
@@ -59,7 +58,6 @@ public class CharBuilderFrame extends JFrame {
 
 
 	public CharBuilderFrame(CharacterBuilderModel model) {
-		this.model = model;
 		
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		

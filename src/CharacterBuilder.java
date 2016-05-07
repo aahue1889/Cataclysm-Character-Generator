@@ -12,7 +12,7 @@ public class CharacterBuilder {
 		ArrayList<Trait> traitList = new ArrayList<Trait>();
 		
 		model.openJsonFile("../CataCharGenerator/src/json/items/tool_armor.json", genericList);
-		traitsmodel.openJsonFile("../CataCharGenerator/src/json/mutations.json", traitList);
+		traitsmodel.openJsonFile("../CataCharGenerator/src/json/mutations.json");
 		
 		//openJsonFile("../CataCharGenerator/src/json/items/generic.json", genericList);
 		//openJsonFile("../CataCharGenerator/src/json/items/tools.json", genericList);
@@ -31,9 +31,11 @@ public class CharacterBuilder {
 		//openJsonFile("../CataCharGenerator/src/json/items/software.json", genericList);
 
 		CharBuilderFrame frame = new CharBuilderFrame(model);
-		SkillsAndTraitsFrame skillTFrame = new SkillsAndTraitsFrame();
+		SkillsAndTraitsFrame skillTFrame = new SkillsAndTraitsFrame(traitsmodel);
 		
-		CharacterBuilderController controller = new CharacterBuilderController(model, frame);
+		
+		CharacterBuilderController controller = new CharacterBuilderController(model, frame);		
+		SkillsAndTraitsController skillTController = new SkillsAndTraitsController( traitsmodel, skillTFrame);
 		
 		frame.getItemList().addListSelectionListener(controller);
 		frame.getFemaleList().addListSelectionListener(controller);
@@ -48,9 +50,8 @@ public class CharacterBuilder {
 			
 			System.out.println("lo:"+genericList.get(x).getId()+"COUNT: "+ x);
 		}*/
-		for(int x = 0; x < traitList.size(); x++){
-			
-			System.out.println("lo:"+traitList.get(x).getGameID()+"COUNT: "+ x);
-		}
+		//for(int x = 0; x < traitList.size(); x++){
+		//	System.out.println("lo:"+traitList.get(x).getGameID()+"COUNT: "+ x);
+		//}
 	}
 }

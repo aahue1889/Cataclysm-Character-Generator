@@ -172,9 +172,11 @@ public class Trait {
 	}
 	
 	public String toString(){
-		return "Name: "+ name + " \n" +
+		return  name ;
+		/*return "Name: "+ name + " \n" +
 				"Description: " + description +" \n"+
 				"GameID: " + gameID + "\n" + 
 				"Canceled Traits: " + cancelLine + "\n";
+				*/
 	}
 }

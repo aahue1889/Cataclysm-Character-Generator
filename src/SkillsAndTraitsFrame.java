@@ -1,7 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -10,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
@@ -17,12 +22,18 @@ import javax.swing.border.EmptyBorder;
 public class SkillsAndTraitsFrame extends JFrame{
 	
 	
+	private JTextArea descriptionTextBox;
+	private JList<Trait> traitsList;
+	private JList<Trait> chosentraitsList;
+	private JButton addButton = new JButton("Add");
+	private JButton removeButton = new JButton("Remove");
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SkillsAndTraitsFrame(){
+	public SkillsAndTraitsFrame( SkillsAndTraitsModel model ){
 		super("Skills and Traits");
 		
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -238,19 +249,42 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    //----- TraitsPanel
 	    JPanel traitsPanel = new JPanel();
 	    traitsPanel.setLayout(new BoxLayout(traitsPanel, BoxLayout.Y_AXIS));
-	    
-	    traitsPanel.add(new JLabel("Traits"));
-	    //JList<Trait> traitsList = new JList<Trait>();
-	    //traitsPanel.add(traitsList);
 
+	    //---- Traits portion
+	    traitsPanel.add(new JLabel("Traits"));
+	    traitsList = new JList<Trait>(new Vector<Trait>(model.getTraitList()) );
+	    traitsList.setVisibleRowCount(5);
+	    traitsList.setCellRenderer(new DefaultListCellRenderer());
+	    traitsList.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+		JScrollPane scrollPane = new JScrollPane(traitsList);
+		scrollPane.setViewportView(traitsList);
+		scrollPane.setPreferredSize(new Dimension(50, 100));
+		traitsPanel.add(scrollPane);
+
+		traitsPanel.add(addButton);
+
+		
+	    //---- Chosen traits portion
 	    traitsPanel.add(new JLabel("\nChosen Traits: "));
-	    //JList<Trait> chosenTraitsList = new JList<Trait>();
-	    //traitsPanel.add(chosenTraitsList);
-	    
-		JTextArea descriptionTextBox = new JTextArea(20,30);
+	    chosentraitsList = new JList<Trait>(model.getExportedTraitList());
+	    chosentraitsList.setVisibleRowCount(5);
+	    chosentraitsList.setCellRenderer(new DefaultListCellRenderer());
+	    chosentraitsList.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+	    JScrollPane exportScroll = new JScrollPane(chosentraitsList);
+		exportScroll.setViewportView(chosentraitsList);
+		exportScroll.setPreferredSize(new Dimension(50, 100));
+		traitsPanel.add(exportScroll);
+
+		traitsPanel.add(removeButton);
+
+	    //---- Description Box
+		descriptionTextBox = new JTextArea(20,30);
 		descriptionTextBox.setLineWrap(true);		
 		JScrollPane textScroller = new JScrollPane(descriptionTextBox);
 		traitsPanel.add(textScroller);
+		
 	    
 		mainPanel.add(traitsPanel, BorderLayout.EAST);
 		
@@ -259,12 +293,44 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    //model.getGeneralList()
 	    mainPanel.add(skillListPanel, BorderLayout.CENTER);
 	    
-	    add(mainPanel, BorderLayout.SOUTH);
+	    add(mainPanel, BorderLayout.CENTER);
 	    pack();
 	 
 
 	    setVisible(true);
 
+	}
+
+	public JTextArea getDescriptionTextBox() {
+		return descriptionTextBox;
+	}
+
+	public void setDescriptionTextBox(JTextArea descriptionTextBox) {
+		this.descriptionTextBox = descriptionTextBox;
+	}
+
+	public JList<Trait> getTraitsList() {
+		return traitsList;
+	}
+
+	public void setTraitsList(JList<Trait> traitsList) {
+		this.traitsList = traitsList;
+	}
+
+	public JList<Trait> getChosentraitsList() {
+		return chosentraitsList;
+	}
+
+	public void setChosentraitsList(JList<Trait> chosentraitsList) {
+		this.chosentraitsList = chosentraitsList;
+	}
+	
+	public JButton getAddButton() {
+		return addButton;
+	}
+	
+	public JButton getRemoveButton() {
+		return removeButton;
 	}
 
 }

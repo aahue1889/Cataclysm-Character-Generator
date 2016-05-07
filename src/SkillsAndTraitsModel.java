@@ -38,8 +38,8 @@ public class SkillsAndTraitsModel{
 	private int trapping = 0;
 	private int unarmed_combat = 0;
 	
-	DefaultListModel<Trait> traitList;
-	DefaultListModel<Trait> exportedTraitList;
+	private ArrayList<Trait> traitList;
+	private DefaultListModel<Trait> exportedTraitList;
 	
 /*	private String[] goodTraits = { "Accomplished Sleeper",
 			"Addiction Resistant",
@@ -158,9 +158,13 @@ public class SkillsAndTraitsModel{
 		// Then it will be added to the list
 		// currently we have no way of discerning good traits or bad traits
 		// I need to create Trait object which is just id (Game name) and Description to help user make a decision
+		exportedTraitList = new DefaultListModel<Trait>();
+		exportedTraitList.addElement(new Trait());
+		
+		traitList = new ArrayList<Trait>();
 	}
 	
-	public void openJsonFile( String fileName, ArrayList<Trait> traitList){
+	public void openJsonFile( String fileName ){
 		String line = "";
 		//itemList = genericList; //TODO This should be in the constructor
 								// but i'm brainstorming on how I can divide the list size to other areas
@@ -419,7 +423,22 @@ public class SkillsAndTraitsModel{
 		this.unarmed_combat = unarmed_combat;
 	}
 
-	
+	public ArrayList<Trait> getTraitList() {
+		return traitList;
+	}
+
+	public void setTraitList(ArrayList<Trait> traitList) {
+		this.traitList = traitList;
+	}
+
+	public DefaultListModel<Trait> getExportedTraitList() {
+		return exportedTraitList;
+	}
+
+	public void setExportedTraitList(DefaultListModel<Trait> exportedTraitList) {
+		this.exportedTraitList = exportedTraitList;
+	}
+
 	
 	
 
