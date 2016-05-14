@@ -2,6 +2,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JList;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -34,6 +36,9 @@ public class SkillsAndTraitsController implements ActionListener, ListSelectionL
 			view.getDescriptionTextBox().setText("");
 			view.getChosentraitsList().validate();
 		}
+		
+		else
+			System.out.println("I have no idea what this is");
 	}
 
 	@Override
@@ -49,6 +54,8 @@ public class SkillsAndTraitsController implements ActionListener, ListSelectionL
 			System.out.println("I don't know what this is");
 		
 	}
+
+	
 	
 	
 }

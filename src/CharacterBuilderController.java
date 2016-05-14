@@ -33,6 +33,12 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 		this.model = model;
 		this.view = view;
 		
+		view.getItemList().addListSelectionListener(this);
+		view.getFemaleList().addListSelectionListener(this);
+		view.getMaleList().addListSelectionListener(this);
+		view.getGeneralList().addListSelectionListener(this);
+
+		
 		view.getGeneralList().setTransferHandler(new ImportTransferHandler( view.getGeneralList(), model.getGeneralList()) );
 		view.getFemaleList().setTransferHandler( new ImportTransferHandler( view.getFemaleList(), model.getFemaleList()) );
 		view.getMaleList().setTransferHandler( new ImportTransferHandler(view.getMaleList(), model.getMaleList() ));

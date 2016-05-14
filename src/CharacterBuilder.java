@@ -37,10 +37,6 @@ public class CharacterBuilder {
 		CharacterBuilderController controller = new CharacterBuilderController(model, frame);		
 		SkillsAndTraitsController skillTController = new SkillsAndTraitsController( traitsmodel, skillTFrame);
 		
-		frame.getItemList().addListSelectionListener(controller);
-		frame.getFemaleList().addListSelectionListener(controller);
-		frame.getMaleList().addListSelectionListener(controller);
-		frame.getGeneralList().addListSelectionListener(controller);
 
 		
 		frame.pack();

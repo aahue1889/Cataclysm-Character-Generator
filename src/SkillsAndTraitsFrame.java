@@ -22,6 +22,12 @@ import javax.swing.border.EmptyBorder;
 public class SkillsAndTraitsFrame extends JFrame{
 	
 	
+    private JSpinner spinarchery, spinbartering, spinbashing_weapons,  spincomputers, spinlconstruction
+    , spincooking , spincutting_weapons  , spindodging  , spindriving  , spinectronics  , spinfabrication  
+    , spinfirst_aid  , spinhandguns   , spinlaunchers   , spinmechanics  , spinmelee  
+    , spinpiercing  ,  spinrifles   ,  spinspeaking   ,  spinsubmachguns   ,  spinsurvival  
+    ,  spinswimming   ,  spinTailoring  ,  spinthrowing  ,  spintrapping   ,  spinunarmedcomb, classCostSpinner;
+	
 	private JTextArea descriptionTextBox;
 	private JList<Trait> traitsList;
 	private JList<Trait> chosentraitsList;
@@ -68,34 +74,88 @@ public class SkillsAndTraitsFrame extends JFrame{
 
 	    SpinnerModel model27 = new SpinnerNumberModel();
 
-	    JSpinner spinarchery = new JSpinner(model1);
-	    JSpinner spinbartering  = new JSpinner(model2);
-	    JSpinner spinbashing_weapons  = new JSpinner(model3);;
-	    JSpinner spincomputers = new JSpinner(model4);;
-	    JSpinner spinlconstruction  = new JSpinner(model5);;
-	    JSpinner spincooking  = new JSpinner(model6);
-	    JSpinner spincutting_weapons  = new JSpinner(model7);
-	    JSpinner spindodging  = new JSpinner(model8);
-	    JSpinner spindriving = new JSpinner(model9);
-	    JSpinner spinectronics  = new JSpinner(model10);
-	    JSpinner spinfabrication  = new JSpinner(model11);
-	    JSpinner spinfirst_aid  = new JSpinner(model12);
-	    JSpinner spinhandguns = new JSpinner(model13);
-	    JSpinner spinlaunchers  = new JSpinner(model14);
-	    JSpinner spinmechanics  = new JSpinner(model15);
-	    JSpinner spinmelee  = new JSpinner(model16);
-	    JSpinner spinpiercing = new JSpinner(model17);
-	    JSpinner  spinrifles  = new JSpinner(model18);
-	    JSpinner  spinspeaking  = new JSpinner(model19);;
-	    JSpinner  spinsubmachguns  = new JSpinner(model20);
-	    JSpinner  spinsurvival = new JSpinner(model21);
-	    JSpinner  spinswimming  = new JSpinner(model22);
-	    JSpinner  spinTailoring  = new JSpinner(model23);
-	    JSpinner  spinthrowing = new JSpinner(model24);
-	    JSpinner  spintrapping  = new JSpinner(model25);
-	    JSpinner  spinunarmedcomb  = new JSpinner(model26);
-	    
-	    JSpinner classCostSpinner = new JSpinner(model27);
+	     spinarchery = new JSpinner(model1);
+	     spinarchery.addChangeListener(new SpinnerController());
+	     
+	     spinbartering  = new JSpinner(model2);
+	     spinbartering.addChangeListener(new SpinnerController());
+	     
+	     spinbashing_weapons  = new JSpinner(model3);
+	     spinbashing_weapons.addChangeListener(new SpinnerController());
+	     
+	     spincomputers = new JSpinner(model4);
+	     spincomputers.addChangeListener(new SpinnerController());
+
+	     spinlconstruction  = new JSpinner(model5);
+	     spinlconstruction.addChangeListener(new SpinnerController());
+
+	     spincooking  = new JSpinner(model6);
+	     spincooking.addChangeListener(new SpinnerController());
+
+	     spincutting_weapons  = new JSpinner(model7);
+	     spincutting_weapons.addChangeListener(new SpinnerController());
+
+	     spindodging  = new JSpinner(model8);
+	     spindodging.addChangeListener(new SpinnerController());
+
+	     spindriving = new JSpinner(model9);
+	     spindriving.addChangeListener(new SpinnerController());
+
+	     spinectronics  = new JSpinner(model10);
+	     spinectronics.addChangeListener(new SpinnerController());
+
+	     spinfabrication  = new JSpinner(model11);
+	     spinfabrication.addChangeListener(new SpinnerController());
+
+	     spinfirst_aid  = new JSpinner(model12);
+	     spinfirst_aid.addChangeListener(new SpinnerController());
+
+	     spinhandguns = new JSpinner(model13);
+	     spinhandguns.addChangeListener(new SpinnerController());
+
+	     spinlaunchers  = new JSpinner(model14);
+	     spinlaunchers.addChangeListener(new SpinnerController());
+
+	     spinmechanics  = new JSpinner(model15);
+	     spinmechanics.addChangeListener(new SpinnerController());
+
+	     spinmelee  = new JSpinner(model16);
+	     spinmelee.addChangeListener(new SpinnerController());
+
+	     spinpiercing = new JSpinner(model17);
+	     spinpiercing.addChangeListener(new SpinnerController());
+
+	     spinrifles  = new JSpinner(model18);
+	     spinrifles.addChangeListener(new SpinnerController());
+
+	     spinspeaking  = new JSpinner(model19);;
+	     spinspeaking.addChangeListener(new SpinnerController());
+
+	     spinsubmachguns  = new JSpinner(model20);
+	     spinsubmachguns.addChangeListener(new SpinnerController());
+
+	     spinsurvival = new JSpinner(model21);
+	     spinsurvival.addChangeListener(new SpinnerController());
+
+	     spinswimming  = new JSpinner(model22);
+	     spinswimming.addChangeListener(new SpinnerController());
+
+	     spinTailoring  = new JSpinner(model23);
+	     spinTailoring.addChangeListener(new SpinnerController());
+
+	     spinthrowing = new JSpinner(model24);
+	     spinthrowing.addChangeListener(new SpinnerController());
+
+	     spintrapping  = new JSpinner(model25);
+	     spintrapping.addChangeListener(new SpinnerController());
+	     
+	     spinunarmedcomb  = new JSpinner(model26);
+	     spinunarmedcomb.addChangeListener(new SpinnerController());
+	     
+
+
+	     classCostSpinner = new JSpinner(model27);
+	     classCostSpinner.addChangeListener(new SpinnerController());
 
 	    
 	    JPanel mainPanel = new JPanel(new BorderLayout());
@@ -280,6 +340,7 @@ public class SkillsAndTraitsFrame extends JFrame{
 		traitsPanel.add(removeButton);
 
 	    //---- Description Box
+	    traitsPanel.add(new JLabel("\nTrait Description: "));
 		descriptionTextBox = new JTextArea(20,30);
 		descriptionTextBox.setLineWrap(true);		
 		JScrollPane textScroller = new JScrollPane(descriptionTextBox);
@@ -289,6 +350,7 @@ public class SkillsAndTraitsFrame extends JFrame{
 		mainPanel.add(traitsPanel, BorderLayout.EAST);
 		
 		//------
+		add(new JButton("Save and Export"), BorderLayout.SOUTH );
 
 	    //model.getGeneralList()
 	    mainPanel.add(skillListPanel, BorderLayout.CENTER);
@@ -331,6 +393,114 @@ public class SkillsAndTraitsFrame extends JFrame{
 	
 	public JButton getRemoveButton() {
 		return removeButton;
+	}
+
+	public JSpinner getSpinarchery() {
+		return spinarchery;
+	}
+
+	public JSpinner getSpinbartering() {
+		return spinbartering;
+	}
+
+	public JSpinner getSpinbashing_weapons() {
+		return spinbashing_weapons;
+	}
+
+	public JSpinner getSpincomputers() {
+		return spincomputers;
+	}
+
+	public JSpinner getSpinlconstruction() {
+		return spinlconstruction;
+	}
+
+	public JSpinner getSpincooking() {
+		return spincooking;
+	}
+
+	public JSpinner getSpincutting_weapons() {
+		return spincutting_weapons;
+	}
+
+	public JSpinner getSpindodging() {
+		return spindodging;
+	}
+
+	public JSpinner getSpindriving() {
+		return spindriving;
+	}
+
+	public JSpinner getSpinectronics() {
+		return spinectronics;
+	}
+
+	public JSpinner getSpinfabrication() {
+		return spinfabrication;
+	}
+
+	public JSpinner getSpinfirst_aid() {
+		return spinfirst_aid;
+	}
+
+	public JSpinner getSpinhandguns() {
+		return spinhandguns;
+	}
+
+	public JSpinner getSpinlaunchers() {
+		return spinlaunchers;
+	}
+
+	public JSpinner getSpinmechanics() {
+		return spinmechanics;
+	}
+
+	public JSpinner getSpinmelee() {
+		return spinmelee;
+	}
+
+	public JSpinner getSpinpiercing() {
+		return spinpiercing;
+	}
+
+	public JSpinner getSpinrifles() {
+		return spinrifles;
+	}
+
+	public JSpinner getSpinspeaking() {
+		return spinspeaking;
+	}
+
+	public JSpinner getSpinsubmachguns() {
+		return spinsubmachguns;
+	}
+
+	public JSpinner getSpinsurvival() {
+		return spinsurvival;
+	}
+
+	public JSpinner getSpinswimming() {
+		return spinswimming;
+	}
+
+	public JSpinner getSpinTailoring() {
+		return spinTailoring;
+	}
+
+	public JSpinner getSpinthrowing() {
+		return spinthrowing;
+	}
+
+	public JSpinner getSpintrapping() {
+		return spintrapping;
+	}
+
+	public JSpinner getSpinunarmedcomb() {
+		return spinunarmedcomb;
+	}
+
+	public JSpinner getClassCostSpinner() {
+		return classCostSpinner;
 	}
 
 }
