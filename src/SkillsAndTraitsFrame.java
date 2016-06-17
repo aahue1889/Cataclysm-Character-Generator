@@ -1,8 +1,13 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
@@ -21,18 +26,44 @@ import javax.swing.border.EmptyBorder;
 
 public class SkillsAndTraitsFrame extends JFrame{
 	
+	final int numberOfSkillsinGame = 26;
+	
+	private JPanel[] skillPanelList = new JPanel[26];
 	
     private JSpinner spinarchery, spinbartering, spinbashing_weapons,  spincomputers, spinlconstruction
     , spincooking , spincutting_weapons  , spindodging  , spindriving  , spinectronics  , spinfabrication  
     , spinfirst_aid  , spinhandguns   , spinlaunchers   , spinmechanics  , spinmelee  
     , spinpiercing  ,  spinrifles   ,  spinspeaking   ,  spinsubmachguns   ,  spinsurvival  
     ,  spinswimming   ,  spinTailoring  ,  spinthrowing  ,  spintrapping   ,  spinunarmedcomb, classCostSpinner;
+    
+    /**
+     * TODO This information should be read from a file - but its not important
+     */
+    private String[] skillStringList = {
+        "Archery", "Bartering", "Bashweap", "Computers",
+        "Construction", "Cooking", "Cutting Weapons", "Dodging",
+        "Driving", "Electronics", "Fabrication", "First Aid",
+        "Handguns", "Launchers", "Mechanics", "Melee",
+        "Piercing Weapons", "Rifles", "Speaking", "SubMachine Guns",
+        "Survival", "Swimming", "Tailoring", "Throwing",
+        "Trapping", "Unarmed"
+    };
 	
+
+	private ArrayList<JSpinner> spinnerList = new ArrayList<JSpinner>();
+    
+
 	private JTextArea descriptionTextBox;
+	private JTextArea classDescriptionBox = new JTextArea("You are Dovakiin, a mighty warrior and slayer of dragons!");
+	private JTextField className = new JTextField(10);
+	private JTextField maleName = new JTextField(10);
+	private JTextField femaleName = new JTextField(10);
 	private JList<Trait> traitsList;
 	private JList<Trait> chosentraitsList;
 	private JButton addButton = new JButton("Add");
 	private JButton removeButton = new JButton("Remove");
+	private JButton backButton = new JButton("Back to Items");
+	private JButton exportButton = new JButton("Save and Export");
 	
 	/**
 	 * 
@@ -44,7 +75,7 @@ public class SkillsAndTraitsFrame extends JFrame{
 		
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-	    
+	  /*  
 	    SpinnerModel model1 = new SpinnerNumberModel();
 	    SpinnerModel model2 = new SpinnerNumberModel();
 	    SpinnerModel model3 = new SpinnerNumberModel();
@@ -71,10 +102,10 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    SpinnerModel model24 = new SpinnerNumberModel();
 	    SpinnerModel model25 = new SpinnerNumberModel();
 	    SpinnerModel model26 = new SpinnerNumberModel();
+*/
+	    SpinnerModel classPointCost = new SpinnerNumberModel();
 
-	    SpinnerModel model27 = new SpinnerNumberModel();
-
-	     spinarchery = new JSpinner(model1);
+/*	     spinarchery = new JSpinner(model1);
 	     spinarchery.addChangeListener(new SpinnerController());
 	     
 	     spinbartering  = new JSpinner(model2);
@@ -152,10 +183,15 @@ public class SkillsAndTraitsFrame extends JFrame{
 	     spinunarmedcomb  = new JSpinner(model26);
 	     spinunarmedcomb.addChangeListener(new SpinnerController());
 	     
+*/
 
-
-	     classCostSpinner = new JSpinner(model27);
+	     classCostSpinner = new JSpinner(classPointCost);
 	     classCostSpinner.addChangeListener(new SpinnerController());
+	     
+	     for(int x = 0; x < numberOfSkillsinGame; x++){
+	    	 spinnerList.add(new JSpinner( new SpinnerNumberModel() ));
+	    	 spinnerList.get(x).addChangeListener(new SpinnerController());
+	     }
 
 	    
 	    JPanel mainPanel = new JPanel(new BorderLayout());
@@ -164,143 +200,153 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    
 	    skillListPanel.setLayout( new GridLayout(10, 0, 0, 0) );
 
-	    JPanel archerPanel = new JPanel();
+	    /**
+	     * Creates panels with a label and spinner in each
+	     */
+	     for(int x = 0; x < numberOfSkillsinGame; x++){
+	    	skillPanelList[x] = new JPanel();
+	    	skillPanelList[x].add(new JLabel(skillStringList[x]));
+	    	skillPanelList[x].add(spinnerList.get(x));
+	    	skillListPanel.add(skillPanelList[x]);
+	     }
+
+/*	    JPanel archerPanel = new JPanel();
         archerPanel.add(new JLabel("Archery"));
-        archerPanel.add(spinarchery);
+        archerPanel.add(spinnerList.get(Skills.ARCHERY.ordinal()));
         skillListPanel.add(archerPanel);
 
 	    JPanel barterPanel = new JPanel();
         barterPanel.add(new JLabel("Bartering"));
-        barterPanel.add(spinbartering);
+        barterPanel.add(spinnerList.get(Skills.BARTERING.ordinal()));
         skillListPanel.add(barterPanel);
 
 	    JPanel bashPanel = new JPanel();
         bashPanel.add(new JLabel("Bashing Weapons"));
-        bashPanel.add(spinbashing_weapons);
+        bashPanel.add(spinnerList.get(Skills.BASHWEAP.ordinal()));
         skillListPanel.add(bashPanel);
         
         JPanel computerPanel = new JPanel();
         computerPanel.add(new JLabel("Computers"));
-        computerPanel.add(spincomputers);
+        computerPanel.add(spinnerList.get(Skills.COMPUTERS.ordinal()));
         skillListPanel.add(computerPanel);
         
         JPanel constructionPanel = new JPanel();
         constructionPanel.add(new JLabel("Construction"));
-        constructionPanel.add(spinlconstruction);
+        constructionPanel.add(spinnerList.get(Skills.CONSTRUCT.ordinal()));
         skillListPanel.add(constructionPanel);
         
         JPanel cookingPanel = new JPanel();
         cookingPanel.add(new JLabel("Cooking"));
-        cookingPanel.add(spincooking);
+        cookingPanel.add(spinnerList.get(Skills.COOKING.ordinal()));
         skillListPanel.add(cookingPanel);
 
         JPanel cuttingPanel = new JPanel();
         cuttingPanel.add(new JLabel("Cutting Weapons"));
-        cuttingPanel.add(spincutting_weapons);
+        cuttingPanel.add(spinnerList.get(Skills.CUTWEAP.ordinal()));
         skillListPanel.add(cuttingPanel);
         
         JPanel dodgePanel = new JPanel();
         dodgePanel.add(new JLabel("Dodging"));
-        dodgePanel.add(spindodging);
+        dodgePanel.add(spinnerList.get(Skills.DODGING.ordinal()));
         skillListPanel.add(dodgePanel );
 
         JPanel drivingPanel = new JPanel();
         drivingPanel.add(new JLabel("Driving"));
-        drivingPanel.add(spindriving);
+        drivingPanel.add(spinnerList.get(Skills.DRIVING.ordinal()));
         skillListPanel.add(drivingPanel);
         
         JPanel electronicsPanel = new JPanel();
         electronicsPanel.add(new JLabel("Electronics"));
-        electronicsPanel.add(spinectronics);
+        electronicsPanel.add(spinnerList.get(Skills.ELECTRONICS.ordinal()));
         skillListPanel.add(electronicsPanel);
 
         JPanel fabricationPanel = new JPanel();
         fabricationPanel .add(new JLabel("Fabrication"));
-        fabricationPanel .add(spinfabrication);
+        fabricationPanel .add(spinnerList.get(10));
         skillListPanel.add(fabricationPanel );
 
         
         JPanel firstAidPanel = new JPanel();
         firstAidPanel.add(new JLabel("First-Aid"));
-        firstAidPanel.add(spinfirst_aid);
+        firstAidPanel.add(spinnerList.get(11));
         skillListPanel.add(firstAidPanel);
 
         JPanel handgunPanel = new JPanel();
         handgunPanel.add(new JLabel("Handguns"));
-        handgunPanel.add(spinhandguns);
+        handgunPanel.add(spinnerList.get(12));
         skillListPanel.add(handgunPanel);
 
         JPanel launcherPanel = new JPanel();
         launcherPanel.add(new JLabel("Launchers"));
-        launcherPanel.add(spinlaunchers);
+        launcherPanel.add(spinnerList.get(13));
         skillListPanel.add(launcherPanel);
 
         JPanel mechanicsPanel = new JPanel();
         mechanicsPanel.add(new JLabel("Mechanics"));
-        mechanicsPanel.add(spinmechanics);
+        mechanicsPanel.add(spinnerList.get(14));
         skillListPanel.add(mechanicsPanel);
 
         JPanel meleePanel = new JPanel();
         meleePanel.add(new JLabel("Melee"));
-        meleePanel.add(spinmelee);
+        meleePanel.add(spinnerList.get(15));
         skillListPanel.add(meleePanel);
 
         JPanel piercingPanel = new JPanel();
         piercingPanel.add(new JLabel("Piercing Weapons"));
-        piercingPanel.add(spinpiercing);
+        piercingPanel.add(spinnerList.get(16));
         skillListPanel.add(piercingPanel);
 
         JPanel riflesPanel = new JPanel();
         riflesPanel.add(new JLabel("Rifles"));
-        riflesPanel.add(spinrifles);
+        riflesPanel.add(spinnerList.get(17));
         skillListPanel.add(riflesPanel);
 
         JPanel speakingPanel = new JPanel();
         speakingPanel.add(new JLabel("Speaking"));
-        speakingPanel.add(spinspeaking);
+        speakingPanel.add(spinnerList.get(18));
         skillListPanel.add(speakingPanel);
 
         JPanel submachinePanel = new JPanel();
         submachinePanel.add(new JLabel("Sub Machine Guns"));
-        submachinePanel.add(spinsubmachguns);
+        submachinePanel.add(spinnerList.get(19));
         skillListPanel.add(submachinePanel);
 
         JPanel survivalPanel = new JPanel();
         survivalPanel.add(new JLabel("Survival"));
-        survivalPanel.add(spinsurvival);
+        survivalPanel.add(spinnerList.get(20));
         skillListPanel.add(survivalPanel);
 
         JPanel swimmingPanel = new JPanel();
         swimmingPanel.add(new JLabel("Swimming"));
-        swimmingPanel.add(spinswimming);
+        swimmingPanel.add(spinnerList.get(21));
         skillListPanel.add(swimmingPanel);
 
         JPanel tailoringPanel = new JPanel();
         tailoringPanel.add(new JLabel("Tailoring"));
-        tailoringPanel.add(spinTailoring);
+        tailoringPanel.add(spinnerList.get(22));
         skillListPanel.add(tailoringPanel);
 
         JPanel throwingPanel = new JPanel();
         throwingPanel.add(new JLabel("Throwing"));
-        throwingPanel.add(spinthrowing);
+        throwingPanel.add(spinnerList.get(23));
         skillListPanel.add(throwingPanel);
 
         JPanel trappingPanel = new JPanel();
         trappingPanel.add(new JLabel("Trapping"));
-        trappingPanel.add(spintrapping);
+        trappingPanel.add(spinnerList.get(24));
         skillListPanel.add(trappingPanel);
 
         JPanel unarmedPanel = new JPanel();
         unarmedPanel.add(new JLabel("Unarmed Combat"));
-        unarmedPanel.add(spinunarmedcomb);
+        unarmedPanel.add(spinnerList.get(25));
         skillListPanel.add(unarmedPanel);
-        
+*/        
         
         //--------
         
         JPanel northPanel = new JPanel();
         northPanel.add(new JLabel("Name of Class: "));
-        northPanel.add(new JTextField(10));
+        northPanel.add(className);
         northPanel.add(new JLabel("| Cost of Class"));
         northPanel.add(classCostSpinner);
 
@@ -349,9 +395,43 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    
 		mainPanel.add(traitsPanel, BorderLayout.EAST);
 		
-		//------
-		add(new JButton("Save and Export"), BorderLayout.SOUTH );
-
+		//------ Buttons on the Southern border
+	    JPanel buttonChangePanel = new JPanel();
+	    buttonChangePanel.setLayout(new BoxLayout(buttonChangePanel, BoxLayout.X_AXIS));
+	    buttonChangePanel.add(exportButton);
+	    buttonChangePanel.add(backButton);
+	    mainPanel.add(buttonChangePanel, BorderLayout.SOUTH);
+	    
+	  //------ Description on west border TODO
+	    JPanel descriptionPanel = new JPanel();
+	    
+	    
+	    descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.Y_AXIS));
+	   
+	    
+	    descriptionPanel.add(new JLabel("Class Description"));
+	    classDescriptionBox.setBorder(BorderFactory.createLineBorder(Color.PINK, 5 , true));
+	    descriptionPanel.add(classDescriptionBox);
+	    
+	    JPanel malePanel = new JPanel();
+	    malePanel.setLayout( new FlowLayout(FlowLayout.LEFT));
+	    malePanel.add(new JLabel("Male/Plain Class Name: \n"));
+	    maleName.setMaximumSize( new Dimension( 300, 100 ) );
+	    malePanel.add(maleName);
+	    descriptionPanel.add(malePanel);
+	    
+	    
+	    JPanel femalePanel = new JPanel();
+	    femalePanel.setLayout( new FlowLayout(FlowLayout.LEFT));
+	    femalePanel.add(new JLabel("Female Class Name: \n"));
+	    femaleName.setText("(This is optional)");
+	    femaleName.setMaximumSize(new Dimension(300, 100));
+	    femalePanel.add(femaleName);
+	    descriptionPanel.add(femalePanel);
+	    
+	    
+	    mainPanel.add(descriptionPanel, BorderLayout.WEST);
+	    
 	    //model.getGeneralList()
 	    mainPanel.add(skillListPanel, BorderLayout.CENTER);
 	    
@@ -359,8 +439,28 @@ public class SkillsAndTraitsFrame extends JFrame{
 	    pack();
 	 
 
-	    setVisible(true);
+	    setVisible(false);
 
+	}
+	
+    public String[] getSkillStringList() {
+		return skillStringList;
+	}
+
+	public JTextField getMaleInGameName() {
+		return maleName;
+	}
+
+	public JTextField getFemaleInGameName() {
+		return femaleName;
+	}
+
+	public JTextArea getClassDescriptionBox() {
+		return classDescriptionBox;
+	}
+
+	public JTextField getClassName() {
+		return className;
 	}
 
 	public JTextArea getDescriptionTextBox() {
@@ -394,6 +494,19 @@ public class SkillsAndTraitsFrame extends JFrame{
 	public JButton getRemoveButton() {
 		return removeButton;
 	}
+	
+	public JButton getBackButton() {
+		return backButton;
+	}
+
+	public JButton getExportButton() {
+		return exportButton;
+	}
+	
+	public ArrayList<JSpinner> getSpinnerList() {
+		return spinnerList;
+	}
+
 
 	public JSpinner getSpinarchery() {
 		return spinarchery;

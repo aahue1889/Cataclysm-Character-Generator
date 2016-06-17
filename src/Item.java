@@ -150,10 +150,11 @@ public class Item {
 	 * String id - This is a major string needed for building json files
 	 * String Description - Will contain information regaurding the item (incase they want ammo)
 	 */
-	public Item( String name, String id, String Description){
+	public Item( String name, String category, String id, String Description){
 		this.name = name;
 		this.id = id;
 		this.description = Description;
+		this.category = category;
 	}
 
 	

@@ -2,7 +2,6 @@
     {
         "id": "manual_karate",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Shotokan Karate Handbook",
@@ -12,6 +11,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -27,7 +28,6 @@
     {
         "id": "manual_aikido",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Spirit of Aikido",
@@ -37,6 +37,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -52,7 +54,6 @@
     {
         "id": "manual_boxing",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Practical Pugilism",
@@ -62,6 +63,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -77,7 +80,6 @@
     {
         "id": "manual_judo",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Kodokan Judo",
@@ -87,6 +89,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -102,7 +106,6 @@
     {
         "id": "manual_tai_chi",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Becoming One with the Tao",
@@ -112,6 +115,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -127,7 +132,6 @@
     {
         "id": "manual_capoeira",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Capoeira 100",
@@ -137,6 +141,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -152,7 +158,6 @@
     {
         "id": "manual_krav_maga",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Complete Krav Maga",
@@ -162,6 +167,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -177,7 +184,6 @@
     {
         "id": "manual_muay_thai",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Ultimate Muay Thai",
@@ -187,6 +193,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -202,7 +210,6 @@
     {
         "id": "manual_ninjutsu",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Essence of Ninjutsu",
@@ -212,6 +219,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -227,7 +236,6 @@
     {
         "id": "manual_taekwondo",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Official Taekwondo Training Manual",
@@ -236,6 +244,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -251,7 +261,6 @@
     {
         "id": "manual_zui_quan",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Zui Quan and You",
@@ -261,6 +270,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -276,7 +287,6 @@
     {
         "id": "manual_crane",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Red Crane",
@@ -286,6 +296,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -301,7 +313,6 @@
     {
         "id": "manual_dragon",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Jade Dragon",
@@ -311,6 +322,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -326,7 +339,6 @@
     {
         "id": "manual_leopard",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Deaf Leopard",
@@ -336,6 +348,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -351,7 +365,6 @@
     {
         "id": "manual_tiger",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The White Tiger",
@@ -361,6 +374,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -376,7 +391,6 @@
     {
         "id": "manual_snake",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Black Snake",
@@ -386,6 +400,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -401,7 +417,6 @@
     {
         "id": "manual_centipede",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Centipede Lu Feng",
@@ -411,6 +426,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -426,7 +443,6 @@
     {
         "id": "manual_scorpion",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Scorpion Sun Chien",
@@ -436,6 +452,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -451,7 +469,6 @@
     {
         "id": "manual_toad",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Toad Lo Mang",
@@ -461,6 +478,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -476,7 +495,6 @@
     {
         "id": "manual_lizard",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Lizard Kuo Chui",
@@ -486,6 +504,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -501,7 +521,6 @@
     {
         "id": "manual_venom_snake",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Viper Wei Pai",
@@ -511,6 +530,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -526,7 +547,6 @@
     {
         "id": "manual_eskrima",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "Practical Eskrima",
@@ -536,6 +556,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -551,7 +573,6 @@
     {
         "id": "manual_fencing",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Modern Swordsman",
@@ -561,6 +582,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -576,7 +599,6 @@
     {
         "id": "manual_silat",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Indonesian Warrior",
@@ -586,6 +608,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,
@@ -601,7 +625,6 @@
     {
         "id": "manual_niten",
         "type": "GENERIC",
-        "category": "books",
         "symbol": "?",
         "color": "green",
         "name": "The Book of Five Rings",
@@ -611,6 +634,8 @@
         "material": "paper",
         "weight": 150,
         "volume": 1,
+        "bashing": 0,
+        "cutting": 0,
         "to_hit": -1,
         "book_data": {
             "max_level" : 0,

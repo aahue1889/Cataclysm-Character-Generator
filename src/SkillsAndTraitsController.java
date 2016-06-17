@@ -19,6 +19,8 @@ public class SkillsAndTraitsController implements ActionListener, ListSelectionL
 		view.getRemoveButton().addActionListener(this);
 		view.getTraitsList().addListSelectionListener(this);
 		view.getChosentraitsList().addListSelectionListener(this);
+		view.getBackButton().addActionListener(this);
+		view.getExportButton().addActionListener(this);
 	}
 
 	@Override
@@ -36,7 +38,13 @@ public class SkillsAndTraitsController implements ActionListener, ListSelectionL
 			view.getDescriptionTextBox().setText("");
 			view.getChosentraitsList().validate();
 		}
-		
+		if(e.getActionCommand().equalsIgnoreCase("Back to Items")){
+			view.setVisible(false);
+		}		
+		if(e.getActionCommand().equalsIgnoreCase("Skills And Traits"))
+			view.setVisible(true);
+		if(e.getActionCommand().equalsIgnoreCase("Save and Export"))
+			view.setVisible(false);
 		else
 			System.out.println("I have no idea what this is");
 	}

@@ -35,10 +35,10 @@
             ],
             "terrain": {
                 ".": "t_grass",
-                "-": "t_wall",
+                "-": "t_wall_h",
                 "2": "t_window_boarded",
                 "3": "t_door_locked",
-                "|": "t_wall",
+                "|": "t_wall_v",
                 " ": "t_floor",
                 "6": "t_floor",
                 "7": "t_floor",
@@ -72,6 +72,7 @@
                 "8": "f_bathtub",
                 "9": "f_rack",
                 ":": "f_dresser",
+                ";": "f_toilet",
                 "=": "f_fireplace",
                 ">": "f_counter",
                 "?": "f_sofa",
@@ -85,9 +86,9 @@
                 "H": "f_armchair",
                 "G": "f_oven"
             },
-            "toilets": {
-                ";": { }
-            },
+            "place_specials": [
+                { "type": "toilet", "x": 20, "y": 2 }
+            ],
             "comment": "specific terrain/furniture/radiation. doing this until grass_or_dirt is supported ---v",
             "set": [
                 { "point": "terrain", "id": "t_dirt", "x": 0, "y": [ 0, 23 ], "repeat": [ 5, 10 ] },
@@ -96,7 +97,7 @@
                 { "point": "terrain", "id": "t_dirt", "x": [ 0, 14 ], "y": 0, "repeat": [ 5, 8 ] }
             ],
             "comment": "randomly picked from a group ---v",
-            "place_items": [
+            "place_groups": [
                 { "item": "bed", "chance": 80,  "x": [6,6 ], "y": [13,13 ] },
                 { "item": "bed", "chance": 80,  "x": [9,9 ], "y": [13,13 ] },
                 { "item": "bed", "chance": 80,  "x": [6,6 ], "y": [15,15 ] },
@@ -123,9 +124,7 @@
                 { "item": "kitchen", "chance": 70, "x": [ 15,21 ], "y": [ 6,11 ] },
                 { "item": "fridge", "chance": 70, "x": [ 21,21 ], "y": [ 11,11 ] },
                 { "item": "oven", "chance": 70, "x": [ 21,21 ], "y": [ 10,10 ] },
-                { "item": "kitchen", "chance": 70, "x": [ 21,21 ], "y": [ 9,9 ] }
-            ],
-            "place_monsters": [
+                { "item": "kitchen", "chance": 70, "x": [ 21,21 ], "y": [ 9,9 ] },
                 { "monster": "GROUP_ZOMBIE", "x": [ 2, 21 ], "y": [ 2, 21 ], "repeat": [2,3] },
                 { "monster": "GROUP_PREPPER_HOUSE", "x": [ 2, 21 ], "y": [ 13, 21 ] }
 

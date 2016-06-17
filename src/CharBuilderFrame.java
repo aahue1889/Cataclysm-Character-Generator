@@ -52,8 +52,8 @@ public class CharBuilderFrame extends JFrame {
 	private JList<Item> itemList, generalList, maleList;
 	private JLabel lblFemaleList;
 	private JLabel lblMaleList;
-	private JTextArea textArea;
-	
+	private JTextArea textArea;	
+	private JButton nextButton = new JButton("Skills and Traits");
 
 
 
@@ -113,7 +113,7 @@ public class CharBuilderFrame extends JFrame {
 		generalscrollPane.setPreferredSize(new Dimension(400, 40));
 		requestedItemsPanel.add(generalscrollPane);
 		
-		requestedItemsPanel.add(new JButton("Skills and Traits"));
+		requestedItemsPanel.add(nextButton);
 
 
 		getContentPane().add(requestedItemsPanel, BorderLayout.EAST);
@@ -138,6 +138,10 @@ public class CharBuilderFrame extends JFrame {
 
 	}
 	
+	public JButton getNextButton() {
+		return nextButton;
+	}
+
 	public JList<Item> getMaleList() {
 		return maleList;
 	}

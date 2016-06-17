@@ -1,10 +1,19 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 public class CharacterBuilder {
 	
-	public static void main( String args[] ){
+	public static void main( String args[] ) throws IOException{
 		
 		CharacterBuilderModel model = new CharacterBuilderModel();
 		SkillsAndTraitsModel traitsmodel = new SkillsAndTraitsModel();
@@ -34,14 +43,16 @@ public class CharacterBuilder {
 		SkillsAndTraitsFrame skillTFrame = new SkillsAndTraitsFrame(traitsmodel);
 		
 		
-		CharacterBuilderController controller = new CharacterBuilderController(model, frame);		
+		CharacterBuilderController controller = new CharacterBuilderController(model, frame);
 		SkillsAndTraitsController skillTController = new SkillsAndTraitsController( traitsmodel, skillTFrame);
-		
-
+		skillTFrame.getBackButton().addActionListener(controller);
+		frame.getNextButton().addActionListener(skillTController);
 		
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		skillTFrame.getExportButton().addActionListener( new CataJsonFile(model,frame, traitsmodel, skillTFrame) );
 		/*for(int x = 0; x < genericList.size(); x++){
 			
 			System.out.println("lo:"+genericList.get(x).getId()+"COUNT: "+ x);
@@ -49,5 +60,10 @@ public class CharacterBuilder {
 		//for(int x = 0; x < traitList.size(); x++){
 		//	System.out.println("lo:"+traitList.get(x).getGameID()+"COUNT: "+ x);
 		//}
+		
+		
+		
 	}
+	
+	
 }

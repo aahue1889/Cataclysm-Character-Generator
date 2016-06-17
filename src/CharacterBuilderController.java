@@ -1,6 +1,8 @@
 import java.awt.Container;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.datatransfer.StringSelection;
 
 import javax.swing.DefaultListModel;
@@ -14,7 +16,7 @@ import javax.swing.TransferHandler;
 //I might rename this to List listerner (but not now - as I do not know the functionality of this class)
 
 @SuppressWarnings("serial")
-public class CharacterBuilderController extends TransferHandler implements ListSelectionListener {
+public class CharacterBuilderController extends TransferHandler implements ListSelectionListener, ActionListener {
 
 	CharacterBuilderModel model;
 	CharBuilderFrame view;
@@ -26,12 +28,15 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 	String tempDescription;
 	String tempName;
 	String tempID;
+	String tempCategory;
 	
 	private String description;
 	
 	public CharacterBuilderController(CharacterBuilderModel model, CharBuilderFrame view){
 		this.model = model;
 		this.view = view;
+		
+		view.getNextButton().addActionListener(this);
 		
 		view.getItemList().addListSelectionListener(this);
 		view.getFemaleList().addListSelectionListener(this);
@@ -57,7 +62,7 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 			tempName = retrievedItem.getName();
 			tempID = retrievedItem.getId();
 			tempDescription = retrievedItem.getDescription();
-			
+			tempCategory = retrievedItem.getCategory();		
 			view.getTextArea().setText(retrievedItem.getDescription());
 			
 		}
@@ -82,6 +87,13 @@ public class CharacterBuilderController extends TransferHandler implements ListS
         	return new StringSelection( source.getSelectedValue().getName() );
         }
     }
+    
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equalsIgnoreCase("Skills And Traits"))
+			view.setVisible(false);
+		if(e.getActionCommand().equalsIgnoreCase("Back to Items"))
+			view.setVisible(true);
+	}
  
     private class ImportTransferHandler extends TransferHandler {
 
@@ -119,10 +131,11 @@ public class CharacterBuilderController extends TransferHandler implements ListS
             // Fetch the drop location
             JList.DropLocation loc = target.getDropLocation();
             int row = loc.getIndex();
-            modelTarget.add(row, new Item(tempName, tempID, tempDescription) );
+            modelTarget.add(row, new Item(tempName, tempID, tempDescription, tempCategory) );
             target.validate();
             return true;
         }
+    
     }
-
+    
 }
