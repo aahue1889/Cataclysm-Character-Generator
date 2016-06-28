@@ -23,21 +23,20 @@ public class CharacterBuilder {
 		model.openJsonFile("../CataCharGenerator/src/json/items/tool_armor.json", genericList);
 		traitsmodel.openJsonFile("../CataCharGenerator/src/json/mutations.json");
 		
-		//openJsonFile("../CataCharGenerator/src/json/items/generic.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/tools.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/archery.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/ammo.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/armor.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/bionics.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/books.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/chemicals_and_resources.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/comestibles.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/containers.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/handloaded_bullets.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/martial_arts_manuals.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/melee.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/ranged.json", genericList);
-		//openJsonFile("../CataCharGenerator/src/json/items/software.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/generic.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/tools.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/archery.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/ammo.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/armor.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/bionics.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/books.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/chemicals_and_resources.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/comestibles.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/containers.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/handloaded_bullets.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/martial_arts_manuals.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/melee.json", genericList);
+		model.openJsonFile("../CataCharGenerator/src/json/items/ranged.json", genericList);
 
 		CharBuilderFrame frame = new CharBuilderFrame(model);
 		SkillsAndTraitsFrame skillTFrame = new SkillsAndTraitsFrame(traitsmodel);

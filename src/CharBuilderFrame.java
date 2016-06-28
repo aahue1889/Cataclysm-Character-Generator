@@ -5,6 +5,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.DropMode;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ListModel;
 import javax.swing.TransferHandler;
@@ -121,6 +122,8 @@ public class CharBuilderFrame extends JFrame {
 		
 		//Item List ( Middle Panel)
 		itemPanel = new JPanel();
+	    //itemPanel.setLayout( new GridLayout(2, 0, 0, 0) );
+		
 		getContentPane().add(itemPanel, BorderLayout.CENTER);		
 		itemList = new JList<Item>(new Vector<Item>(model.getItemList()) );
 		itemList.setVisibleRowCount(10);
@@ -135,6 +138,18 @@ public class CharBuilderFrame extends JFrame {
 		scrollPane.setPreferredSize(new Dimension(500, 300));
 		itemPanel.add(scrollPane);
 
+		//NORTH PANEL
+	    JPanel searchEnginePanel = new JPanel();
+	    searchEnginePanel.add(new JLabel("Search"));
+	    getContentPane().add(searchEnginePanel, BorderLayout.NORTH);
+	    
+	    JTextField searchRequestTextField = new JTextField(10);
+	    searchRequestTextField.setMaximumSize(new Dimension(300, 100));
+	    searchEnginePanel.add(searchRequestTextField);
+	    
+	    JButton searchButton = new JButton("Search");
+	    searchEnginePanel.add(searchButton);
+	    //itemPanel.add(searchEnginePanel);
 
 	}
 	
