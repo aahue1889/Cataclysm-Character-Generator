@@ -7,7 +7,7 @@ import javax.swing.DefaultListModel;
 public class CharacterBuilderModel {
 
 	private ArrayList<Item> itemList;
-	DefaultListModel<Item> generalList, femaleList, maleList;
+	DefaultListModel<Item> generalList, femaleList, maleList, tempList;
 	
 	public CharacterBuilderModel(  ){
 		femaleList = new DefaultListModel<Item>();
@@ -18,6 +18,8 @@ public class CharacterBuilderModel {
 		
 		generalList = new DefaultListModel<Item>();
 		generalList.addElement(new Item());
+		
+		tempList = new DefaultListModel<Item>();
 		
 		itemList = new ArrayList<Item>();
 	}
@@ -91,6 +93,7 @@ public class CharacterBuilderModel {
 
 
 
+
 	public ArrayList<Item> getItemList() {
 		return itemList;
 	}
@@ -121,5 +124,13 @@ public class CharacterBuilderModel {
 
 	public void setGeneralList(DefaultListModel<Item> generalList) {
 		this.generalList = generalList;
+	}
+	
+	public DefaultListModel<Item> getSearchList() {
+		return tempList;
+	}
+
+	public void setSearchList(DefaultListModel<Item> searchList) {
+		this.tempList = searchList;
 	}
 }

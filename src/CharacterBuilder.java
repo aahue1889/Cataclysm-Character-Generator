@@ -46,6 +46,8 @@ public class CharacterBuilder {
 		SkillsAndTraitsController skillTController = new SkillsAndTraitsController( traitsmodel, skillTFrame);
 		skillTFrame.getBackButton().addActionListener(controller);
 		frame.getNextButton().addActionListener(skillTController);
+		frame.getSearchButton().addActionListener(controller);
+		//frame.getSearchRequestTextField();
 		
 		frame.pack();
 		frame.setVisible(true);

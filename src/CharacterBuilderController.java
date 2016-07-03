@@ -42,11 +42,13 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 		view.getFemaleList().addListSelectionListener(this);
 		view.getMaleList().addListSelectionListener(this);
 		view.getGeneralList().addListSelectionListener(this);
+		view.getQueryList().addListSelectionListener(this);
 
 		
 		view.getGeneralList().setTransferHandler(new ImportTransferHandler( view.getGeneralList(), model.getGeneralList()) );
 		view.getFemaleList().setTransferHandler( new ImportTransferHandler( view.getFemaleList(), model.getFemaleList()) );
 		view.getMaleList().setTransferHandler( new ImportTransferHandler(view.getMaleList(), model.getMaleList() ));
+		view.getQueryList().setTransferHandler((new ImportTransferHandler(view.getMaleList(), model.getMaleList() ) ));
 		
 		view.getItemList().setTransferHandler( new ExportTransferHandler( view.getItemList() ) );
 	}
@@ -93,6 +95,52 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 			view.setVisible(false);
 		if(e.getActionCommand().equalsIgnoreCase("Back to Items"))
 			view.setVisible(true);
+		if(e.getActionCommand().equalsIgnoreCase("Search")){
+			
+			String query = view.getSearchRequestTextField().getText();
+			model.getSearchList().clear();
+			
+			if(query.isEmpty()){
+				view.getMiddlePanel().removeAll();
+				view.addItemList();
+				//view.getMiddlePanel().add(view.getScrollPane().Tr);
+				//view.getScrollPane().setVisible(true);
+				//view.getSearchPane().setVisible(false);
+			}
+				
+			
+			for(int x = 0; x < model.getItemList().size(); x++){
+				
+				if(model.getItemList().get(x).toString() == null){
+					System.out.println("Requires further investigation");
+					continue;
+				}
+				if(model.getItemList().get(x).toString().contains(query)){
+					model.getSearchList().addElement(model.getItemList().get(x));
+					System.out.println( model.getItemList().get(x).getId() + "\n");
+				}
+				
+
+			}
+
+			//view.getS
+			for(int x= 0; x < model.getSearchList().getSize(); x++){
+				System.out.println(model.getSearchList().get(x).toString());
+			}
+			
+			
+			
+			
+			view.getMiddlePanel().removeAll();
+			view.addQueryList();
+			//view.getMiddlePanel().add(view.getSearchPane());
+			//view.getScrollPane().setVisible(false);
+
+			//view.getSearchPane().setVisible(true);
+ 
+			view.repaint();
+			view.revalidate();
+		}
 	}
  
     private class ImportTransferHandler extends TransferHandler {

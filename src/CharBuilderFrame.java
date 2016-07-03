@@ -45,17 +45,23 @@ public class CharBuilderFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel panel_3,requestedItemsPanel, descriptionPanel, itemPanel;
-	private JPanel ItemListPanel;
+	private JPanel panel_3,requestedItemsPanel, descriptionPanel, middlePanel;
+
+	JLabel itemPanel;
+	private JLabel ItemListPanel, queryPanel;
+	private JScrollPane searchPane, scrollPane;
 	//private JList<String> ;
 
+
+
 	private JList<Item> femaleList;
-	private JList<Item> itemList, generalList, maleList;
+	private JList<Item> itemList, generalList, maleList, queryList;
 	private JLabel lblFemaleList;
 	private JLabel lblMaleList;
 	private JTextArea textArea;	
+	private JTextField searchRequestTextField;
 	private JButton nextButton = new JButton("Skills and Traits");
-
+	private JButton searchButton; 
 
 
 	public CharBuilderFrame(CharacterBuilderModel model) {
@@ -120,12 +126,11 @@ public class CharBuilderFrame extends JFrame {
 		getContentPane().add(requestedItemsPanel, BorderLayout.EAST);
 		
 		
-		//Item List ( Middle Panel)
-		itemPanel = new JPanel();
-	    //itemPanel.setLayout( new GridLayout(2, 0, 0, 0) );
+ 		middlePanel = new JPanel();
+ 		
 		
-		getContentPane().add(itemPanel, BorderLayout.CENTER);		
-		itemList = new JList<Item>(new Vector<Item>(model.getItemList()) );
+		itemPanel = new JLabel();
+ 		itemList = new JList<Item>(new Vector<Item>(model.getItemList()) );
 		itemList.setVisibleRowCount(10);
 		itemList.setCellRenderer(new DefaultListCellRenderer());
 		itemList.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -133,25 +138,108 @@ public class CharBuilderFrame extends JFrame {
 		itemList.setDragEnabled(true);
 		itemList.setTransferHandler(new ExportTransferHandler());
 		
-		JScrollPane scrollPane = new JScrollPane(itemList);
-		scrollPane.setViewportView(itemList);
-		scrollPane.setPreferredSize(new Dimension(500, 300));
-		itemPanel.add(scrollPane);
+		scrollPane = new JScrollPane(itemList);
+ 		scrollPane.setPreferredSize(new Dimension(500, 300));
+		middlePanel.add(scrollPane);
+ 		
+		
+		
+		queryPanel = new JLabel();
+ 		queryList = new JList<Item>(model.getSearchList());
+		queryList.setVisibleRowCount(10);
+		queryList.setCellRenderer(new DefaultListCellRenderer());
+		queryList.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		queryList.setDragEnabled(true);
+		queryList.setTransferHandler(new ExportTransferHandler());
+		
+		searchPane = new JScrollPane(queryList);
+ 		searchPane.setPreferredSize(new Dimension(500, 300));
+		
+	    scrollPane.setVisible(true);
+
+	    
+	    getContentPane().add(middlePanel, BorderLayout.CENTER);
+		
 
 		//NORTH PANEL
 	    JPanel searchEnginePanel = new JPanel();
 	    searchEnginePanel.add(new JLabel("Search"));
 	    getContentPane().add(searchEnginePanel, BorderLayout.NORTH);
 	    
-	    JTextField searchRequestTextField = new JTextField(10);
+	    searchRequestTextField = new JTextField(10);
 	    searchRequestTextField.setMaximumSize(new Dimension(300, 100));
 	    searchEnginePanel.add(searchRequestTextField);
 	    
-	    JButton searchButton = new JButton("Search");
+	    searchButton = new JButton("Search");
 	    searchEnginePanel.add(searchButton);
 	    //itemPanel.add(searchEnginePanel);
 
 	}
+		
+	public void addItemList() {
+		
+		//itemPanel = new JLabel();
+ 		//itemList = new JList<Item>(new Vector<Item>(model.getItemList()) );
+		itemList.setVisibleRowCount(10);
+		itemList.setCellRenderer(new DefaultListCellRenderer());
+		itemList.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		itemList.setDragEnabled(true);
+		itemList.setTransferHandler(new ExportTransferHandler());
+		
+		scrollPane = new JScrollPane(itemList);
+ 		scrollPane.setPreferredSize(new Dimension(500, 300));
+		middlePanel.add(scrollPane);
+
+	}
+	
+	public void addQueryList() {
+		
+		//queryPanel = new JLabel();
+ 		//queryList = new JList<Item>(model.getSearchList());
+		queryList.setVisibleRowCount(10);
+		queryList.setCellRenderer(new DefaultListCellRenderer());
+		queryList.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		queryList.setDragEnabled(true);
+		queryList.setTransferHandler(new ExportTransferHandler());
+		
+		searchPane = new JScrollPane(queryList);
+ 		searchPane.setPreferredSize(new Dimension(500, 300));
+ 		middlePanel.add(searchPane);
+
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+	
+	public JPanel getMiddlePanel(){
+		return middlePanel;
+	}
+	
+	
+	public JList<Item> getQueryList(){
+		return queryList;
+	}
+
+	public JLabel getQueryPanel() {
+		return queryPanel;
+	}
+	
+	public JLabel getItemListPanel() {
+		return itemPanel;
+	}
+	
+	public JTextField getSearchRequestTextField() {
+		return searchRequestTextField;
+	}
+
+	public JButton getSearchButton() {
+		return searchButton;
+	}
+
 	
 	public JButton getNextButton() {
 		return nextButton;
@@ -204,7 +292,10 @@ public class CharBuilderFrame extends JFrame {
         }
      
         public Transferable createTransferable(JComponent c) {
-            return new StringSelection(itemList.getSelectedValue().getName());
+        	if(itemList.isSelectionEmpty())
+        		return new StringSelection(queryList.getSelectedValue().getName());
+        	else
+        		return new StringSelection(itemList.getSelectedValue().getName());
         }
     }
  
