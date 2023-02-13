@@ -6,10 +6,13 @@ import javax.swing.DefaultListModel;
 
 public class CharacterBuilderModel {
 
+	private ArrayList<String> categoryList = new ArrayList<String>();
 	private ArrayList<Item> itemList;
 	DefaultListModel<Item> generalList, femaleList, maleList, tempList;
 	
 	public CharacterBuilderModel(  ){
+    	categoryList.add("All"); // We need an empty cell in the categoryDropList
+		
 		femaleList = new DefaultListModel<Item>();
 		femaleList.addElement(new Item());
 		
@@ -33,7 +36,7 @@ public class CharacterBuilderModel {
         try {
             // FileReader reads text files in the default encoding.
             FileReader fileReader = new FileReader(fileName);
-
+            
             // Always wrap FileReader in BufferedReader.
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             int character; // TODO put this somewhere more appropriate
@@ -48,8 +51,30 @@ public class CharacterBuilderModel {
                 	
 	                	Item newitem = new Item();
 	                	isCorrect = newitem.buildItem(bufferedReader);
+	                	System.out.println(newitem.toString());
+	                	
+	                	//This catches false 'items' to keep the itemlist short
+	                	// instead of filled with null elements.
+	                	if(newitem.getId() == null)
+	                		continue;
+	                	
 	                	itemList.add(newitem);
 	                	
+	                	String category = newitem.getType();
+	                	System.out.println(category);
+	                	if(category != null){
+	                		//if(categoryList.size() == 0)
+	                		//	categoryList.add(category);
+	                			
+		                	for(int x = 0; x < categoryList.size(); x++)
+		                	{
+		                		if(categoryList.get(x).equalsIgnoreCase(category) || categoryList.get(x).contains(category))
+		                			break;
+		                		//if(categoryList.get(x).equalsIgnoreCase(category))	
+		                		else if(x == (categoryList.size()-1))
+		                			categoryList.add(category);
+		                	}
+		                }
 	                	if(isCorrect == 1) break;
 	                	else continue;
                 	}
@@ -93,6 +118,10 @@ public class CharacterBuilderModel {
 
 
 
+
+	public ArrayList<String> getCategoryList() {
+		return categoryList;
+	}
 
 	public ArrayList<Item> getItemList() {
 		return itemList;

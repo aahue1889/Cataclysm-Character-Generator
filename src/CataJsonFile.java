@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JSpinner;
 
-public class CataJsonFile implements ActionListener{
+public class CataJsonFile  {
 	
 	private static CharacterBuilderModel model;
 	private static CharBuilderFrame frame;
@@ -29,19 +29,9 @@ public class CataJsonFile implements ActionListener{
 		CataJsonFile.skillTFrame = skillTFrame ;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getActionCommand().equalsIgnoreCase("Save and Export"))
-			try {
-				makeCharacterFile();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		
-	}
+ 
 	
-	public static void makeCharacterFile() throws IOException{
+	public void makeCharacterFile() throws IOException{
 
 
 		File file = new File("../CataCharGenerator/src/mods/CataBMods");
@@ -123,15 +113,15 @@ public class CataJsonFile implements ActionListener{
 		out.write("        \"ident\": \""+ skillTFrame.getClassName().getText() +"\",\n");
 		
 		if( optionalNames.equalsIgnoreCase("(This is optional)") || optionalNames.equalsIgnoreCase("")) //if there is an optional name
-			out.write("        \"name\": \""+ skillTFrame.getMaleInGameName() +"\",\n");
+			out.write("        \"name\": \""+ skillTFrame.getMaleInGameName().getText() +"\",\n");
 		else{
 			out.write("        \"name\": {\n");
-			out.write("            \"male\": \""+skillTFrame.getMaleInGameName()+"\",\n");
+			out.write("            \"male\": \""+skillTFrame.getMaleInGameName().getText() +"\",\n");
 			out.write("            \"female\": \""+optionalNames+"\"\n");
 			out.write("        },\n");			
 		}
 		
-		out.write("        \"description\": "+ skillTFrame.getDescriptionTextBox().getText() +",\n");
+		out.write("        \"description\": "+ skillTFrame.getClassDescriptionBox().getText() +",\n");
 		out.write("        \"points\": "+ ((Integer)skillTFrame.getClassCostSpinner().getValue()) +",");
 		
 		if( listsContainsBionics() ){
@@ -182,9 +172,10 @@ public class CataJsonFile implements ActionListener{
 			
 			out.write("            \"both\": [");
 			
-			for(int x = 0; x < bothList.size(); x++)
-				out.write("                "+bothList.get(x).getId()+"\n");
-			
+			for(int x = 0; x < bothList.size(); x++){
+				System.out.println(bothList.get(x).getCategory());
+				out.write("                "+bothList.get(x).getCategory()+"\n");
+			}
 			out.write("            ]");
 		}
 
@@ -197,9 +188,10 @@ public class CataJsonFile implements ActionListener{
 			
 			out.write("            \"male\": [");
 			
-			for(int x = 0; x < maleList.size(); x++)
-				out.write("                "+maleList.get(x).getId()+"\n");
-			
+			for(int x = 0; x < maleList.size(); x++){
+				System.out.println(maleList.get(x).getCategory());
+				out.write("                "+maleList.get(x).getCategory()+"\n");
+			}
 			out.write("            ]");
 			
 		}
@@ -214,8 +206,10 @@ public class CataJsonFile implements ActionListener{
 			
 			out.write("            \"female\": [");
 			
-			for(int x = 0; x < femaleList.size(); x++)
-				out.write("                "+femaleList.get(x).getId()+"\n");
+			for(int x = 0; x < femaleList.size(); x++){
+				System.out.println(femaleList.get(x).getCategory());
+				out.write("                "+femaleList.get(x).getCategory()+"\n");
+			}
 			
 			out.write("            ]");
 			
@@ -243,15 +237,28 @@ public class CataJsonFile implements ActionListener{
 
 	private static boolean listsContainsBionics() {
 		
-		for(int x = 0; x < model.getGeneralList().getSize(); x++)
-			if(model.getGeneralList().get(x).getCategory().equalsIgnoreCase("bionics"))
+		for(int x = 0; x < model.getGeneralList().getSize(); x++){
+			System.out.println(model.getGeneralList().get(x).getCategory());
+			if( model.getGeneralList().get(x).getCategory() == null)
+				continue;
+			if(model.getGeneralList().get(x).getCategory().equalsIgnoreCase("bionics") )
 				return true;
-		for(int x = 0; x < model.getFemaleList().getSize(); x++)
-			if(model.getFemaleList().get(x).getCategory().equalsIgnoreCase("bionics"))
+		}
+		for(int x = 0; x < model.getFemaleList().getSize(); x++){
+			System.out.println(model.getFemaleList().get(x).getCategory());
+			if( model.getFemaleList().get(x).getCategory() == null)
+				continue;
+			if(model.getFemaleList().get(x).getCategory().equalsIgnoreCase("bionics") )
 				return true;
-		for(int x = 0; x < model.getMaleList().getSize(); x++)
+		}
+		for(int x = 0; x < model.getMaleList().getSize(); x++){
+			System.out.println(model.getMaleList().get(x).getCategory());
+
+			if( model.getMaleList().get(x).getCategory() == null)
+				continue;
 			if(model.getMaleList().get(x).getCategory().equalsIgnoreCase("bionics"))
 				return true;
+		}
 		
 		return false;
 	}

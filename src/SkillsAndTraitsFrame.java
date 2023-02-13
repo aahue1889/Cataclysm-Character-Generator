@@ -616,4 +616,6 @@ public class SkillsAndTraitsFrame extends JFrame{
 		return classCostSpinner;
 	}
 
+	
+
 }

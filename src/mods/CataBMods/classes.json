@@ -1,5 +1,27 @@
 [
     {
         "type": "profession",
+        "ident": "bo",
+        "name": "rb",
+        "description": red,
+        "points": 0,        "skills": [
+            {
+                "level": 2,
+                "name": Launchers,
+            }
+        ],
+        "Items": {
+            "both": [                null
+                 "mp3_on",
+                 "tazer",
+                 "winter_jacket_army",
+            ],
+            "male": [                null
+                 "bot_laserturret",
+            ],
+            "female": [                null
+                 "UPS_off",
+            ]
+        }
     }
 ]

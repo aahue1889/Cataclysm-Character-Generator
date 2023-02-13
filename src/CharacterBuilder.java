@@ -37,13 +37,18 @@ public class CharacterBuilder {
 		model.openJsonFile("../CataCharGenerator/src/json/items/martial_arts_manuals.json", genericList);
 		model.openJsonFile("../CataCharGenerator/src/json/items/melee.json", genericList);
 		model.openJsonFile("../CataCharGenerator/src/json/items/ranged.json", genericList);
+		
+
 
 		CharBuilderFrame frame = new CharBuilderFrame(model);
 		SkillsAndTraitsFrame skillTFrame = new SkillsAndTraitsFrame(traitsmodel);
 		
+		CataJsonFile newFile = new CataJsonFile(model, frame, traitsmodel, skillTFrame);
+		//skillTFrame.getExportButton().addActionListener(newFile);
 		
 		CharacterBuilderController controller = new CharacterBuilderController(model, frame);
 		SkillsAndTraitsController skillTController = new SkillsAndTraitsController( traitsmodel, skillTFrame);
+		skillTController.setOutputFile( newFile );
 		skillTFrame.getBackButton().addActionListener(controller);
 		frame.getNextButton().addActionListener(skillTController);
 		frame.getSearchButton().addActionListener(controller);
@@ -53,7 +58,7 @@ public class CharacterBuilder {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		skillTFrame.getExportButton().addActionListener( new CataJsonFile(model,frame, traitsmodel, skillTFrame) );
+		//skillTFrame.getExportButton().addActionListener(skillTController );
 		/*for(int x = 0; x < genericList.size(); x++){
 			
 			System.out.println("lo:"+genericList.get(x).getId()+"COUNT: "+ x);
@@ -62,7 +67,12 @@ public class CharacterBuilder {
 		//	System.out.println("lo:"+traitList.get(x).getGameID()+"COUNT: "+ x);
 		//}
 		
+		for(int x = 0; x < model.getCategoryList().size(); x++)
+			System.out.println("CATEGORY: " + model.getCategoryList().get(x));
 		
+		
+		
+
 		
 	}
 	

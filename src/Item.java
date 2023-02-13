@@ -368,7 +368,7 @@ public class Item {
 	        //It is the responsibility of a child class find the end of a json body statement (the '}')
 			// UNLESS The item is a Generic Type			
 			if( (line.contains("},") || line.contains("}"))  ){
-	        	System.out.println(this.toString());
+	        	//System.out.println(this.toString());
 	        	
 	        	if( line.contains("},{"))
 	        		return 0;
@@ -379,7 +379,7 @@ public class Item {
 			
 	        //Else if this was a constructor called then do not look for the end of the body statemt (the '}')
 			else if(true){
-	        	System.out.println("ERROR: " + line);
+	        	//System.out.println("ERROR: " + line);
 	        	continue;
 			}
 	        

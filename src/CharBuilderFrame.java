@@ -25,6 +25,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JInternalFrame;
 import java.awt.Button;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -45,6 +46,9 @@ public class CharBuilderFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
+	private CataJsonFile outputFile;
+	
 	private JPanel panel_3,requestedItemsPanel, descriptionPanel, middlePanel;
 
 	JLabel itemPanel;
@@ -62,6 +66,7 @@ public class CharBuilderFrame extends JFrame {
 	private JTextField searchRequestTextField;
 	private JButton nextButton = new JButton("Skills and Traits");
 	private JButton searchButton; 
+	private JComboBox<String> categoryComboBox;
 
 
 	public CharBuilderFrame(CharacterBuilderModel model) {
@@ -82,10 +87,12 @@ public class CharBuilderFrame extends JFrame {
 		
 		//requested Items Panel (the Right Panel)
 		requestedItemsPanel = new JPanel();
-		requestedItemsPanel.setLayout(new GridLayout(7, 0, 0, 0));
+		requestedItemsPanel.setLayout(new GridLayout(4, 0, 0, 0));
 		
+		JPanel femaleListPanel = new JPanel();
+		femaleListPanel.setLayout(new BoxLayout(femaleListPanel, BoxLayout.Y_AXIS));
 		lblFemaleList = new JLabel("female list");
-		requestedItemsPanel.add(lblFemaleList);
+		femaleListPanel.add(lblFemaleList);
 		femaleList = new JList<Item>(model.getFemaleList());
 		femaleList.setDragEnabled(true);
 		femaleList.setModel((ListModel<Item>) model.getFemaleList());
@@ -93,11 +100,14 @@ public class CharBuilderFrame extends JFrame {
 		femaleList.setDropMode(DropMode.INSERT);
 		JScrollPane femalescrollPane = new JScrollPane(femaleList);
 		femalescrollPane.setViewportView(femaleList);
-		femalescrollPane.setPreferredSize(new Dimension(400, 40));
-		requestedItemsPanel.add(femalescrollPane);
+		femalescrollPane.setPreferredSize(new Dimension(400, 100));
+		femaleListPanel.add(femalescrollPane);
+		requestedItemsPanel.add(femaleListPanel);
 		
+		JPanel maleListPanel = new JPanel();
+		maleListPanel.setLayout(new BoxLayout(maleListPanel, BoxLayout.Y_AXIS));
 		lblMaleList = new JLabel("male list");
-		requestedItemsPanel.add(lblMaleList);
+		maleListPanel.add(lblMaleList);
 		maleList = new JList<Item>(model.getMaleList());
 		maleList.setDragEnabled(true);
 		//maleList.setTransferHandler(new ListTransferHandler());
@@ -105,22 +115,29 @@ public class CharBuilderFrame extends JFrame {
 		maleList.setDropMode(DropMode.INSERT);
 		JScrollPane malescrollPane = new JScrollPane(maleList);
 		malescrollPane.setViewportView(maleList);
-		malescrollPane.setPreferredSize(new Dimension(400, 40));
-		requestedItemsPanel.add(malescrollPane);
+		malescrollPane.setPreferredSize(new Dimension(400, 100));
+		maleListPanel.add(malescrollPane);
+		requestedItemsPanel.add(maleListPanel);
 		
 
+		JPanel generalListPanel = new JPanel();
+		generalListPanel.setLayout(new BoxLayout(generalListPanel, BoxLayout.Y_AXIS));
 		JLabel lblGeneralList = new JLabel("general list");
-		requestedItemsPanel.add(lblGeneralList);
+		generalListPanel.add(lblGeneralList);
 		generalList = new JList<Item>(model.getGeneralList());
 		generalList.setDragEnabled(true);
 		//generalList.setTransferHandler(new ImportTransferHandler(generalList, model.getGeneralList()));
 		generalList.setDropMode(DropMode.INSERT);
 		JScrollPane generalscrollPane = new JScrollPane(generalList);
 		generalscrollPane.setViewportView(generalList);
-		generalscrollPane.setPreferredSize(new Dimension(400, 40));
-		requestedItemsPanel.add(generalscrollPane);
+		generalscrollPane.setPreferredSize(new Dimension(400, 100));
+		generalListPanel.add(generalscrollPane);
+		requestedItemsPanel.add(generalListPanel);
+
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(nextButton);
 		
-		requestedItemsPanel.add(nextButton);
+		requestedItemsPanel.add(buttonPanel);
 
 
 		getContentPane().add(requestedItemsPanel, BorderLayout.EAST);
@@ -173,10 +190,16 @@ public class CharBuilderFrame extends JFrame {
 	    
 	    searchButton = new JButton("Search");
 	    searchEnginePanel.add(searchButton);
+	    
+	    
+	    categoryComboBox = new JComboBox<String>(model.getCategoryList().toArray(new String[model.getCategoryList().size()] ));
+	    searchEnginePanel.add(categoryComboBox);
+	    //categoryComboBox.add();
 	    //itemPanel.add(searchEnginePanel);
 
 	}
 		
+
 	public void addItemList() {
 		
 		//itemPanel = new JLabel();
@@ -210,6 +233,11 @@ public class CharBuilderFrame extends JFrame {
  		middlePanel.add(searchPane);
 
 	}
+	
+	public JComboBox<String> getCategoryComboBox() {
+		return categoryComboBox;
+	}
+
 
 	public JScrollPane getScrollPane() {
 		return scrollPane;

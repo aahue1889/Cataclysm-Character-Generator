@@ -37,6 +37,8 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 		this.view = view;
 		
 		view.getNextButton().addActionListener(this);
+		view.getCategoryComboBox().addActionListener(this);
+		
 		
 		view.getItemList().addListSelectionListener(this);
 		view.getFemaleList().addListSelectionListener(this);
@@ -49,6 +51,7 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 		view.getFemaleList().setTransferHandler( new ImportTransferHandler( view.getFemaleList(), model.getFemaleList()) );
 		view.getMaleList().setTransferHandler( new ImportTransferHandler(view.getMaleList(), model.getMaleList() ));
 		view.getQueryList().setTransferHandler((new ImportTransferHandler(view.getMaleList(), model.getMaleList() ) ));
+		
 		
 		view.getItemList().setTransferHandler( new ExportTransferHandler( view.getItemList() ) );
 	}
@@ -112,10 +115,23 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 			for(int x = 0; x < model.getItemList().size(); x++){
 				
 				if(model.getItemList().get(x).toString() == null){
-					System.out.println("Requires further investigation");
+					System.out.println("Requires further investigation:" + model.getItemList().get(x));
 					continue;
 				}
 				if(model.getItemList().get(x).toString().contains(query)){
+					
+					String category = model.getItemList().get(x).getType();
+					String selectedItem = view.getCategoryComboBox().getSelectedItem().toString();
+					
+					
+					if(category == null)
+						continue;					
+					if(selectedItem.equalsIgnoreCase("All")){}					
+					else if( selectedItem.contains(category)    ){}
+					else if( !selectedItem.equalsIgnoreCase(category)    )
+						continue;
+					
+					
 					model.getSearchList().addElement(model.getItemList().get(x));
 					System.out.println( model.getItemList().get(x).getId() + "\n");
 				}
@@ -125,7 +141,7 @@ public class CharacterBuilderController extends TransferHandler implements ListS
 
 			//view.getS
 			for(int x= 0; x < model.getSearchList().getSize(); x++){
-				System.out.println(model.getSearchList().get(x).toString());
+				//System.out.println(model.getSearchList().get(x).toString());
 			}
 			
 			
